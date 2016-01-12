@@ -14,11 +14,6 @@
 <div class="wrapper animate-in">
 	<section class="container nc-heading">
 		<nav class="row nc-nav js-nc-nav">
-			<!--
-			<div class="m-nav-overview col-xs-10 visible-xs">
-					<a href="#">OVERVIEW</a><i class="icon-arrows_up"></i>
-			</div>
-			-->
 			<ul class="col-xs-10 hidden-xs">
 				<li class="col-sm-2">
 						<a href="#">OVERVIEW</a>
@@ -37,30 +32,6 @@
 				  <option>Least Driven</option>      
 				</select>
              </div>	
-			<!--
-			<div class="m-nav-top modal fade visible-xs" tabindex="-1" role="dialog" id="gallerymodal">
-			  <div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-					</div>
-					<div class="modal-body">					
-						<ul class="col-xs-10">
-							<li class="col-sm-2">
-									<a href="#">OVERVIEW</a>
-							</li>
-							<li class="col-sm-2"><a href="#">COLORS</a></li>
-							<li class="col-sm-2"><a href="#">VARIANTS</a></li>
-							<li class="col-sm-2"><a href="#">GALLERY</a></li>
-							<li class="col-sm-2"><a href="#">SIMILAR CARS</a></li>
-						</ul>
-					</div>
-					<div class="modal-footer">
-					</div>			
-					
-				</div>
-			   </div>
-			</div>
-			-->
 			<div class="nc-share col-xs-2">
 				<i class="icon-basic_share"></i>			
 				<i class="icon-tweet hidden-xs"></i>
@@ -192,15 +163,22 @@
         </li>
 </ul></section><section class="nc-variants"><div class="container animate-variants" data-class="animate-variants">
                         <div class="row">
-                                <h2 class="col-sm-6">Maruti Suzuki Baleno Variants</h2>		
-                                <div class="col-sm-6">
-                                        <ul class="row  nav-btn">
+                                <h2 class="col-xs-6 col-sm-6">Maruti Suzuki Baleno Variants</h2>		
+                                <div class="col-xs-6 col-sm-6">
+                                        <ul class="row  nav-btn hidden-xs">
 <li class="col-sm-3"><a class="btn btn-filled">All</a></li>
                                                 <li class="col-sm-3"><a class="btn btn-border">Petrol</a></li>
                                                 <li class="col-sm-3"><a class="btn btn-border">Diesel</a></li>
                                                 <li class="col-sm-3"><a class="btn btn-border">CNG</a></li>
                                         </ul>
-</div>
+								<div class="visible-xs pull-right">
+									<select class="frm-select">
+									  <option>Petrol</option>
+									  <option>Diesel</option>
+									  <option>CNG</option>
+									</select>
+								 </div>										
+							</div>
                         </div>
                 <div class="nc-desc col-xs-12 col-sm-4">
     <div class="nc-image hidden-xs">
@@ -1762,14 +1740,22 @@
 		<div class="">
 			<div class="container nc-gallery-head">
 				<div class="row">
-					<h2 class="col-sm-6">Gallery</h2>
-					<div class="col-sm-6">
-						<ul class="row nav-btn" role="tablist">
+					<h2 class="col-xs-6 col-sm-6">Gallery</h2>
+					<div class="col-xs-6 col-sm-6  ">
+						<ul class="row nav-btn hidden-xs" role="tablist">
 							<li role="presentation" class="col-xs-3"><a class="btn btn-filled">All</a></li>
-							<li role="presentation" class="col-xs-3"><a class="btn btn-border">Petrol</a></li>
-							<li role="presentation" class="col-xs-3"><a class="btn btn-border">Diesel</a></li>
-							<li role="presentation" class="col-xs-3"><a class="btn btn-border">CNG</a></li>
+							<li role="presentation" class="col-xs-3"><a class="btn btn-border">Exterior</a></li>
+							<li role="presentation" class="col-xs-3"><a class="btn btn-border">Interior</a></li>
+							<li role="presentation" class="col-xs-3"><a class="btn btn-border">Videos</a></li>		
 						</ul>
+						<div class="visible-xs pull-right">
+							<select class="frm-select">
+							  <option>All</option>
+							  <option>Exterior</option>
+							  <option>Interior</option>
+							  <option>Videos</option>								
+							</select>
+						 </div>								
 					</div>
 				</div>	
 			</div>
