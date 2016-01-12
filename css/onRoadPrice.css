@@ -1,0 +1,185 @@
+/* button color for primary button */
+/* equal to 14px */
+/* new cars related */
+.bold-font {
+  font-family: 'ProximaNova-Semibold';
+}
+.roadCalcImage2 {
+  background-color: #f8f8f8;
+  margin-top: -12px;
+  padding-bottom: 40px;
+}
+.roadCalcImage2 .bgImage {
+  background: url('/images/car/newcars/roadPriceCalc/ford-bg-mast-lg.jpg') no-repeat;
+  height: 300px;
+  background-size: cover;
+}
+.roadCalcImage2 .calculatorHeading {
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  margin-top: -140px;
+}
+@media (max-width: 480px) {
+  .roadCalcImage2 .calculatorHeading {
+    margin-top: -185px;
+  }
+}
+@media (max-width: 480px) {
+  .roadCalcImage2 .calculatorHeading h1 {
+    font-size: 26px;
+  }
+}
+.roadCalcImage2 .calculator {
+  float: left;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  height: auto;
+  display: block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  padding: 40px 20px;
+}
+@media (max-width: 768px) {
+  .roadCalcImage2 .calculator {
+    padding-top: 20px;
+  }
+}
+.roadCalcImage2 .calculator .formElem {
+  margin-top: 10px;
+}
+.roadCalcImage2 .calculator .dropDownCalc {
+  margin-top: 6px;
+  width: 100%;
+  border: transparent;
+  border-bottom: 1px solid #cccccc;
+  border-radius: 0px;
+  text-align: left;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  background-color: #ffffff;
+  /*margin-left: 20px;*/
+}
+.roadCalcImage2 .calculator .carImageCalc {
+  margin-bottom: 20px;
+}
+.roadCalcImage2 .calculator .getPriceButton {
+  width: 100%;
+}
+.roadCalcImage2 .calculator .dropDownList {
+  margin-left: 15px;
+  width: 87%;
+}
+.roadCalcImage2 .calculator i {
+  float: right;
+}
+.roadCalcImage2 .calculator .carInfo li {
+  list-style-type: none;
+  line-height: 32px;
+}
+.roadCalcImage2 .calculator .carInfo .filterBar li:first-child {
+  padding-left: 0px;
+}
+.roadCalcImage2 .calculator .carInfo .filterBar li:last-child {
+  padding-right: 0px;
+}
+@media (max-width: 768px) {
+  .roadCalcImage2 .calculator .carInfo .filterBar ul {
+    padding-left: 0px;
+  }
+  .roadCalcImage2 .calculator .carInfo .filterBar li:nth-child(2) {
+    padding-left: 5px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .filterBar button {
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: #7c7c7c;
+}
+@media (max-width: 480px) {
+  .roadCalcImage2 .calculator .carInfo .filterBar button {
+    font-size: 12px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .filterBar span {
+  font-weight: bold;
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc {
+  margin-top: 70px;
+}
+@media (max-width: 768px) {
+  .roadCalcImage2 .calculator .carInfo .detailsCalc {
+    padding-left: 0px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc li {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc li span {
+  font-size: 14px;
+  color: #3c3c3c;
+}
+@media (max-width: 480px) {
+  .roadCalcImage2 .calculator .carInfo .detailsCalc li span {
+    font-size: 12px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc li:nth-child(-n+3) {
+  border-bottom: 1px solid #ddd;
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc li:nth-child(4) {
+  font-family: 'ProximaNova-Semibold';
+}
+@media (max-width: 480px) {
+  .roadCalcImage2 .calculator .carInfo .detailsCalc li:nth-child(4) span:first-child {
+    word-wrap: break-word;
+    display: inline-block;
+    width: 50%;
+    line-height: 17px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc .amount {
+  float: right;
+}
+.roadCalcImage2 .calculator .carInfo .detailsCalc .amount i {
+  float: left;
+  font-size: 14px;
+}
+.roadCalcImage2 .calculator .carInfo .calcButtons {
+  margin-top: 20px;
+}
+.roadCalcImage2 .calculator .carInfo .calcButtons button {
+  height: 45px;
+  width: 45%;
+  margin-top: 25px;
+  margin-left: 40px;
+}
+.roadCalcImage2 .calculator .carInfo .calcButtons .dealerOffer {
+  width: 35%;
+}
+@media (max-width: 768px) {
+  .roadCalcImage2 .calculator .carInfo .calcButtons .dealerOffer {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
+.roadCalcImage2 .calculator .carInfo .calcButtons .priceAnother {
+  width: 54%;
+  margin-left: 10px;
+  white-space: pre-wrap;
+}
+@media (max-width: 768px) {
+  .roadCalcImage2 .calculator .carInfo .calcButtons .priceAnother {
+    width: 100%;
+    margin-left: 0px;
+  }
+}

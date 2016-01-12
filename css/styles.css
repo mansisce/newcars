@@ -1,0 +1,163 @@
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src: url('../../../../css/font/proxima-nova/2E7201_0_0.eot');
+  src: url('../../../../css/font/proxima-nova/2E7201_0_0.eot?#iefix') format('embedded-opentype'), url('../../../../css/font/proxima-nova/2E7201_0_0.woff2') format('woff2'), url('../../../../css/font/proxima-nova/2E7201_0_0.woff') format('woff'), url('../../../../css/font/proxima-nova/2E7201_0_0.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ProximaNova-Regular';
+  src: url('../../../../css/font/proxima-nova/2E7201_1_0.eot');
+  src: url('../../../../css/font/proxima-nova/2E7201_1_0.eot?#iefix') format('embedded-opentype'), url('../../../../css/font/proxima-nova/2E7201_1_0.woff2') format('woff2'), url('../../../../css/font/proxima-nova/2E7201_1_0.woff') format('woff'), url('../../../../css/font/proxima-nova/2E7201_1_0.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'ProximaNova-Semibold';
+  src: url('../../../../css/font/proxima-nova/2E7201_2_0.eot');
+  src: url('../../../../css/font/proxima-nova/2E7201_2_0.eot?#iefix') format('embedded-opentype'), url('../../../../css/font/proxima-nova/2E7201_2_0.woff2') format('woff2'), url('../../../../css/font/proxima-nova/2E7201_2_0.woff') format('woff'), url('../../../../css/font/proxima-nova/2E7201_2_0.ttf') format('truetype');
+}
+/* button color for primary button */
+/* equal to 14px */
+/* new cars related */
+.bold-font {
+  font-family: 'ProximaNova-Semibold';
+}
+body {
+  background-color: #ffffff;
+}
+body {
+  font-family: 'ProximaNova-Regular';
+  color: #3c3c3c;
+  font-size: 16px;
+  height: 100%;
+  line-height: 1.5;
+  padding-top: 63px;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  white-space: normal;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 35px;
+  font-family: 'ProximaNova-Semibold';
+}
+a {
+  color: #008bcf;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #004769;
+}
+li {
+  list-style: none;
+}
+.nav-btn li {
+  padding-right: 0;
+}
+.nav-btn li a {
+  display: block;
+}
+._btn {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'ProximaNova-Semibold';
+  font-size: 0.85em;
+  padding: 5px 10px;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+}
+.btn-filled {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'ProximaNova-Semibold';
+  font-size: 0.85em;
+  padding: 5px 10px;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+  background: #008bcf;
+  color: #ffffff;
+}
+.btn-filled:hover,
+.btn-filled:focus {
+  color: #ffffff;
+  background: #00699c;
+}
+.btn-border {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'ProximaNova-Semibold';
+  font-size: 0.85em;
+  padding: 5px 10px;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+  background: transparent;
+  border: 1px solid #008bcf;
+  color: #008bcf;
+}
+.btn-border:hover {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'ProximaNova-Semibold';
+  font-size: 0.85em;
+  padding: 5px 10px;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+  background: #008bcf;
+  color: #ffffff;
+}
+.btn-border:hover:hover,
+.btn-border:hover:focus {
+  color: #ffffff;
+  background: #00699c;
+}
+.no-left-padding {
+  padding-left: 0;
+}
+.no-right-padding {
+  padding-right: 0;
+}
+.no-lr-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
