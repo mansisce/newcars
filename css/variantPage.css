@@ -1,0 +1,85 @@
+/* button color for primary button */
+/* equal to 14px */
+/* new cars related */
+.bold-font {
+  font-family: 'ProximaNova-Semibold';
+}
+div.nc-variantpage {
+  margin-top: 30px;
+}
+div.nc-variantpage section.nc-details {
+  margin-top: 60px;
+}
+div.nc-variantpage section.nc-details .tab-content {
+  background-color: #f2f2f2;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media (min-width: 992px) {
+  div.nc-variantpage section.nc-details .tab-content {
+    background-color: #ffffff;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+div.nc-variantpage section.nc-details .tab-content .tab-pane h4 {
+  background-color: #fff;
+  line-height: 40px;
+  margin-left: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  padding-left: 10px;
+  font-family: 'ProximaNova-Regular';
+}
+@media (min-width: 992px) {
+  div.nc-variantpage section.nc-details .tab-content .tab-pane h4 {
+    line-height: 30px;
+    background-color: #fbfbfb;
+  }
+}
+div.nc-variantpage section.nc-details .tab-content .tab-pane ul {
+  padding-left: 0px;
+  line-height: 1;
+}
+div.nc-variantpage section.nc-details .tab-content .tab-pane ul li {
+  list-style: none;
+  line-height: 52px;
+  border-bottom: 1px dotted #cccccc;
+  font-size: 14px;
+}
+div.nc-variantpage section.nc-details .tab-content .tab-pane ul li span:first-child {
+  color: #7c7c7c;
+}
+div.nc-variantpage section.nc-details .tab-content .tab-pane ul li span:last-child {
+  color: #3c3c3c;
+}
+div.nc-variantpage section.nc-details .nc-nav-tabs {
+  border-bottom: 0;
+}
+div.nc-variantpage section.nc-details .nc-nav-tabs li {
+  /*
+			&.active {
+				a {
+				    background-color: #ddd;
+				    border: 1px solid #ddd;
+				    border-bottom-color: transparent;
+				}
+		    }
+		    */
+  padding-right: 5px;
+  padding-left: 6px;
+  text-align: center;
+}
+div.nc-variantpage section.nc-details .nc-nav-tabs li a {
+  line-height: 1em;
+}
+div.nc-variantpage section.nc-details .nc-nav-tabs li:not(.active) a {
+  background-color: #fbfbfb;
+  border: 1px solid #ddd;
+  color: #3c3c3c;
+  border-bottom-color: transparent;
+}
+/* closes the page level div or the page container */
