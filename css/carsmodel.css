@@ -191,6 +191,9 @@ div.wrapper nav.nc-nav {
   -khtml-opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
 }
+div.wrapper nav.nc-nav select.frm-select {
+  border-bottom: 1px solid #ddd;
+}
 div.wrapper nav.nc-nav ul li {
   text-transform: uppercase;
 }
@@ -778,5 +781,11 @@ div.wrapper .carousel-control .icon-arrows_left {
   div.wrapper .carousel-indicators {
     bottom: 20px;
   }
+}
+div.wrapper .frm-select {
+  background: none;
+  font-size: 0.85em;
+  border: 0;
+  font-family: 'ProximaNova-Regular';
 }
 /* closes the page level div or the page container */
