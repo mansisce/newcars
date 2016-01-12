@@ -15,18 +15,26 @@
 		//
 
 	}());
-	nc.view = (function(){
-		
+	nc.view = (function(){		
 		var onnavclick = function(){
 			//add the animation class: animate the anchor on hover
 			//add the animation class for mobile for the drop down. 
 			//on click of nav link scroll to the section.
 
 			$("nav.js-nc-nav div:first-child").on("click",function(){
-				$("nav.js-nc-nav").find("ul:first-of-type").toggleClass("hidden-xs").addClass("");
+				//$("nav.js-nc-nav").find("ul:first-of-type").toggleClass("hidden-xs").addClass("");
+				$('.m-nav-top').modal('show');
 			});		
 		};
 		
+		/*		
+		var onNavClick = function(){
+			$(".m-nav-overview").on("click", function(){
+				$('.m-nav-top').modal('show');
+
+			});
+		};	
+		*/
 		var ongallerythumbclick = function(){
 			//can i provide the object to show with some animation effect.
 			/*
@@ -82,7 +90,17 @@
 	    //Waves.init();
 	    //Waves.attach('.btn');
 	}());
-	
+
+	/*
+	nc.view.mSwipe =  (function(){
+	   $(".carousel").swiperight(function() {
+	      $(this).carousel('prev');
+	    });
+	   $(".carousel").swipeleft(function() {
+	      $(this).carousel('next');
+	   });
+	}());
+	*/
 	nc.model = (function(){
 		
 		return {};
