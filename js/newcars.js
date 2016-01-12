@@ -74,9 +74,6 @@
 				if (imagePos < topOfWindow+400) {
 					$(this).addClass(dataclass);
 				}
-				else{
-					$(this).removeClass(dataclass);							
-				}
 			});		
 		});				
 	}());
