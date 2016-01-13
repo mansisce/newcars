@@ -558,6 +558,8 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs l
 }
 div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li.active {
   border-bottom: 1px solid #008bcf;
+  background-color: transparent;
+  border: 0;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
