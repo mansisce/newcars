@@ -462,6 +462,11 @@ div.wrapper section.nc-features ul {
   margin-bottom: 0;
   overflow-x: scroll;
 }
+@media (min-width: 992px) {
+  div.wrapper section.nc-features ul {
+    overflow-x: hidden;
+  }
+}
 div.wrapper section.nc-features ul li {
   padding-top: 25px;
   padding-bottom: 25px;
