@@ -497,6 +497,36 @@ div.wrapper section.nc-gallery {
   margin-bottom: 100px;
   padding-top: 40px;
 }
+div.wrapper section.nc-gallery .modal .modal-content {
+  background-color: #000;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-header {
+  border-bottom: 0;
+  padding: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-header h4.modal-title {
+  color: #fff;
+  width: 82%;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-body {
+  padding: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item .carousel-caption {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item .carousel-caption h2 {
+  margin: 0;
+  /* padding: 10px; */
+  /* padding-left: 15px; */
+  width: 80%;
+  text-align: left;
+}
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
   font-size: 18px;
@@ -696,6 +726,10 @@ div.wrapper .carousel {
     top: 0;
     margin-bottom: 100px;
   }
+}
+div.wrapper .carousel .item .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 10px 15px;
 }
 @media screen and (min-width: 768px) {
   div.wrapper .carousel img {
