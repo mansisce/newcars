@@ -4,6 +4,15 @@
 .bold-font {
   font-family: 'ProximaNova-Semibold';
 }
+/* New cars related mixins */
+.nav-tablecell {
+  list-style: none;
+  display: table-cell;
+  width: 1%;
+  text-align: center;
+  vertical-align: middle;
+  float: none;
+}
 div.wrapper {
   /* closes the mask */
   /* closes the cta */
@@ -526,6 +535,29 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item
   /* padding-left: 15px; */
   width: 80%;
   text-align: left;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer {
+  /*color: #008bcf;*/
+  border: 0;
+  padding: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer .tab-content {
+  background-color: rgba(204, 204, 204, 0.45);
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs {
+  border-bottom: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li {
+  list-style: none;
+  display: table-cell;
+  width: 1%;
+  text-align: center;
+  vertical-align: middle;
+  float: none;
+  color: #fff;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li.active {
+  border-bottom: 1px solid #008bcf;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
