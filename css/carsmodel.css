@@ -460,6 +460,7 @@ div.wrapper section.nc-features {
 }
 div.wrapper section.nc-features ul {
   margin-bottom: 0;
+  overflow-x: scroll;
 }
 div.wrapper section.nc-features ul li {
   padding-top: 25px;
@@ -537,7 +538,6 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item
   text-align: left;
 }
 div.wrapper section.nc-gallery .modal .modal-content .modal-footer {
-  /*color: #008bcf;*/
   border: 0;
   padding: 0;
 }
@@ -556,10 +556,13 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs l
   float: none;
   color: #fff;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li.active {
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li.active a {
   border-bottom: 1px solid #008bcf;
   background-color: transparent;
   border: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li a {
+  color: #fff;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
