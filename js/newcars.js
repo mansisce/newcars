@@ -1,7 +1,7 @@
 	var nc = {};
 	nc.init = (function(){
-
 		nc.MOBILE = "768px";
+		nc.windowWidth = $(window).width();
 		nc.DESKTOP = "";
 
 		$(document).ready(function(){
@@ -43,8 +43,12 @@
 			});
 			*/
 			$("figure").on("click", function(){	
-				$("#gallery-carousel-mobile").hide();
-				$('#gallerymodal').modal('show');
+				if( nc.windowWidth > nc.MOBILE ) {
+					$("#d-gallery-carousel").show("400");				
+				}else {
+					$("#gallery-carousel-mobile").hide();
+					$('#gallerymodal').modal('show');
+				}
 			});			
 		};
 		
@@ -53,16 +57,15 @@
 		onnavclick();
 		onscroll();
 		ongallerythumbclick();
-
 		return {};
 	}());
 	nc.view.carousel = (function(){
 		var hidecarouselonload = function(){
-			$("#carousel-example-generic").hide();
+			$("#d-gallery-carousel").hide();
 		}
 		var closecarousel = (function(){
 			$(".icon-arrows_remove").on("click",function(){
-				$("#carousel-example-generic").hide("400");
+				$("#d-gallery-carousel").hide("400");
 			});
 		});
 		closecarousel();
