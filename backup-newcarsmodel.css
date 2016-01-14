@@ -4,6 +4,7 @@
 .bold-font {
   font-family: 'ProximaNova-Semibold';
 }
+/* New cars related mixins */
 .nav-tablecell {
   list-style: none;
   display: table-cell;
@@ -17,6 +18,45 @@ div.wrapper {
   /* closes the cta */
   /* closes the nav.*/
   /* close the color section*/
+  /*
+div.carousel-control {
+    // Hover/focus state
+    &:hover,
+    &:focus {
+    }
+    &#d-variant-carousel {
+
+    }
+    .icon-prev, .icon-close,
+    .icon-next{
+        &#d-gallery-carousel {
+          @media screen and (min-width: @screen-sm-min) {
+          }
+
+              
+          position: absolute;
+          top: 50%;
+          margin-top: -10px;
+          z-index: 5;
+          display: inline-block;
+        }
+        .icon-prev {  
+          @media screen and (min-width: @screen-sm-min) {
+              margin-left: -15px;
+            }
+          left: 50%;
+          margin-left: -10px;
+        }
+        .icon-next{
+          right: 50%;
+          margin-right: -10px;
+          @media screen and (min-width: @screen-sm-min) {
+              margin-right: -15px;
+            }
+        }
+    }
+}
+*/
   margin-top: 30px;
 }
 div.wrapper li {
@@ -459,6 +499,12 @@ div.wrapper section.nc-features {
 }
 div.wrapper section.nc-features ul {
   margin-bottom: 0;
+  overflow-x: scroll;
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-features ul {
+    overflow-x: hidden;
+  }
 }
 div.wrapper section.nc-features ul li {
   padding-top: 25px;
@@ -524,27 +570,43 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-body {
 }
 div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item .carousel-caption {
   top: 0;
+  left: 0;
   right: 0;
   bottom: auto;
-  left: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li {
+div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item .carousel-caption h2 {
+  margin: 0;
+  /* padding: 10px; */
+  /* padding-left: 15px; */
+  width: 80%;
+  text-align: left;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer {
+  border: 0;
+  padding: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer .tab-content {
+  background-color: rgba(204, 204, 204, 0.45);
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs {
+  border-bottom: 0;
+}
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li {
   list-style: none;
   display: table-cell;
   width: 1%;
   text-align: center;
   vertical-align: middle;
   float: none;
-}
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li a {
   color: #fff;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li.active a {
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li.active a {
+  border-bottom: 1px solid #008bcf;
   background-color: transparent;
   border: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li.active:hover a {
-  border-bottom: red;
+div.wrapper section.nc-gallery .modal .modal-content .modal-footer ul.nav-tabs li a {
+  color: #fff;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
@@ -739,24 +801,22 @@ div.wrapper section.nc-details .nc-nav-tabs li:first-child {
 div.wrapper .carousel {
   width: 100%;
 }
-div.wrapper .carousel .carousel-control {
-  top: 50%;
-  bottom: 50%;
-}
 div.wrapper .carousel .carousel-control .icon-prev,
 div.wrapper .carousel .carousel-control .icon-next {
   width: 40px;
   height: 40px;
   background-color: #000;
 }
+div.wrapper .carousel .carousel-control .icon-arrows_right,
+div.wrapper .carousel .carousel-control .icon-arrows_left {
+  /*
+          font-size: 36px;
+          line-height: 1em;
+        */
+}
 div.wrapper .carousel .item .carousel-caption {
   background-color: rgba(0, 0, 0, 0.85);
   padding: 10px 15px;
-}
-div.wrapper .carousel .item .carousel-caption h2 {
-  margin: 0;
-  width: 80%;
-  text-align: left;
 }
 @media screen and (min-width: 768px) {
   div.wrapper #d-gallery-carousel.carousel {
@@ -765,52 +825,37 @@ div.wrapper .carousel .item .carousel-caption h2 {
     margin-bottom: 100px;
   }
 }
-div.wrapper #d-gallery-carousel .item img {
-  max-height: 500px;
-  width: 100%;
+@media screen and (min-width: 768px) {
+  div.wrapper #d-gallery-carousel .item img {
+    max-height: 500px;
+    width: 100%;
+  }
 }
-div.wrapper #d-gallery-carousel .item .carousel-caption {
-  top: 0;
-  right: 0;
-  bottom: auto;
-  left: 0;
-}
-div.wrapper #d-gallery-carousel .carousel-control .icon-close {
+div.wrapper #d-gallery-carousel div.carousel-control .icon-close {
   top: 0;
   margin-right: -10px;
 }
-div.wrapper #d-gallery-carousel .carousel-control .icon-prev {
-  left: 15px;
+@media screen and (min-width: 768px) {
+  div.wrapper #d-gallery-carousel div.carousel-control .icon-close {
+    margin-right: -15px;
+  }
 }
-div.wrapper #d-gallery-carousel .carousel-control .icon-next {
-  right: 15px;
-}
-div.wrapper #m-thumbnail-all .thumbnail,
-div.wrapper #m-thumbnail-interior .thumbnail {
+div.wrapper #m-gallery-carousel .thumbnail {
   float: left;
   width: 25%;
 }
-div.wrapper #d-variant-carousel .carousel-control.right,
-div.wrapper #d-variant-carousel .carousel-control.left {
+div.wrapper #d-variant-carousel .carousel-control.left,
+div.wrapper #d-variant-carousel .carousel-control.right {
   background-image: none;
+}
+div.wrapper #d-variant-carousel .carousel-control .icon-prev {
+  left: 15px;
 }
 div.wrapper #d-variant-carousel .carousel-control .icon-prev {
   left: 15px;
 }
 div.wrapper #d-variant-carousel .carousel-control .icon-next {
   right: 15px;
-}
-div.wrapper #d-variant-carousel .carousel-control.top {
-  top: 0;
-  width: 99%;
-  bottom: 100%;
-  text-align: right;
-}
-div.wrapper #d-variant-carousel .carousel-control.top .icon-arrows_remove {
-  width: 40px;
-  height: 40px;
-  background-color: #000;
-  display: inline-block;
 }
 div.wrapper .frm-select {
   background: none;
@@ -819,44 +864,3 @@ div.wrapper .frm-select {
   font-family: 'ProximaNova-Regular';
 }
 /* closes the page level div or the page container */
-div.roadPriceModal .modal-dialog {
-  width: 310px;
-  margin: 190px auto;
-}
-div.roadPriceModal .modal-dialog .modalStyle {
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
-}
-div.roadPriceModal .modal-dialog .modalStyle .headerBG {
-  background: #001824;
-}
-div.roadPriceModal .modal-dialog .modalStyle .modal-header button,
-div.roadPriceModal .modal-dialog .modalStyle .modal-body button,
-div.roadPriceModal .modal-dialog .modalStyle .modal-footer button {
-  margin-left: 0px;
-  margin-top: 0px;
-  width: 100%;
-}
-div.roadPriceModal .modal-dialog .modalStyle .modal-header .citySelect,
-div.roadPriceModal .modal-dialog .modalStyle .modal-body .citySelect,
-div.roadPriceModal .modal-dialog .modalStyle .modal-footer .citySelect {
-  background-color: transparent;
-  border: none;
-}
-div.roadPriceModal .modal-dialog .modalStyle .modal-header {
-  color: #ffffff;
-}
-div.roadPriceModal .modal-dialog .modalStyle .modal-header button {
-  width: initial;
-  height: initial;
-}
-div.roadPriceModal .modal-dialog .modalStyle .modal-header button i {
-  float: right;
-}

@@ -56,8 +56,8 @@
 				}
 				else{
 					console.log($("#d-gallery-carousel").css("display"));
-					$("#d-gallery-carousel").removeClass("hidden");
-					$("#d-gallery-carousel").show("400");
+					$("#d-gallery-carousel").removeClass("hidden",400);
+					//$("#d-gallery-carousel").show("400");
 				}
 			});			
 		};
@@ -124,15 +124,25 @@
 	}());
 	
 	quikr.cars.nc.applyFilter = function(element){
-		var url=$(element).attr('href')+'?ajax=true';
+		//var url=$(element).attr('href')+'/?ajax=true';
+		var url ="http://www.quikr.com/cars-bikes/new+Ashok-Leyland+Mumbai+17/?ajax=true";
 		$.ajax({
 			url:url,
 			dataType:'json',
 			success:function(result){
-				console.log(result);
+				$('.js-nc-filters').html(result['filters']);
+				$('.js-nc-breadcrumb').html(result['breadcrumb']);
+				$('.js-nc-snbcard-column').html(result['searchResults']);
 			},
-			error:function(result){
-				console.log('error');
+			error:function(error){
+				console.log(error);
 			}
 		});
 	};
+
+
+$(".sticky-filters-nav li a").click(function(event){
+	event.preventDefault();
+	quikr.cars.nc.applyFilter(this);
+	return false;
+});
