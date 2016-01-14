@@ -1,9 +1,17 @@
-	var nc = {};
-	nc.init = (function(){
-		nc.MOBILE = "768px";
-		nc.windowWidth = $(window).width();
-		nc.DESKTOP = "";
+	var quikr = quikr || {};
+	quikr.cars = quikr.cars || {};
+	quikr.cars.nc = {};
+	quikr.cars.nc.init = (function(){
 
+		this.MOBILE = "767";
+		this.TABLET = "991";
+		this.DESKTOP = "1199";
+		this.WINDOW_WIDTH = $(window).width();
+		quikr.cars.nc.isMobile  = false;
+
+		if( this.WINDOW_WIDTH <=this.MOBILE){
+			quikr.cars.nc.isMobile  = true;
+		}
 		$(document).ready(function(){
 				$("[data-class='animate-cta']").addClass("animate-cta");
 		});
@@ -13,9 +21,8 @@
 		$("[data-class='animate-cta']").addClass("animate-cta");	
 
 		//
-
 	}());
-	nc.view = (function(){		
+	quikr.cars.nc.view = (function(){		
 		var onnavclick = function(){
 			//add the animation class: animate the anchor on hover
 			//add the animation class for mobile for the drop down. 
@@ -43,11 +50,14 @@
 			});
 			*/
 			$("figure").on("click", function(){	
-				if( nc.windowWidth > nc.MOBILE ) {
-					$("#d-gallery-carousel").show("400");				
-				}else {
+				if(quikr.cars.nc.isMobile) {
 					$("#gallery-carousel-mobile").hide();
 					$('#gallerymodal').modal('show');
+				}
+				else{
+					console.log($("#d-gallery-carousel").css("display"));
+					$("#d-gallery-carousel").removeClass("hidden");
+					$("#d-gallery-carousel").show("400");
 				}
 			});			
 		};
@@ -57,26 +67,27 @@
 		onnavclick();
 		onscroll();
 		ongallerythumbclick();
+
 		return {};
 	}());
-	nc.view.carousel = (function(){
+	quikr.cars.nc.view.carousel = (function(){
 		var hidecarouselonload = function(){
-			$("#d-gallery-carousel").hide();
+			$("#carousel-example-generic").hide();
 		}
 		var closecarousel = (function(){
 			$(".icon-arrows_remove").on("click",function(){
-				$("#d-gallery-carousel").hide("400");
+				$("#carousel-example-generic").hide("400");
 			});
 		});
 		closecarousel();
 		hidecarouselonload();	
 	}());
 
-	nc.view.modal = (function(){
+	quikr.cars.nc.view.modal = (function(){
 		//$('#gallerymodal').modal('show');
 	}());
 
-	nc.view.scroll = (function(){
+	quikr.cars.nc.view.scroll = (function(){
 		$(window).scroll(function() {
 			$("[data-class='animate-colors'],[data-class='animate-variants'],[data-class='animate-cta'],[data-class='animate-gallery']").each(function(){
 				var dataclass = $(this).data('class');
@@ -89,7 +100,7 @@
 		});				
 	}());
 
-	nc.view.effectwave = (function(){
+	quikr.cars.nc.view.effectwave = (function(){
 	    //Waves.init();
 	    //Waves.attach('.btn');
 	}());
@@ -104,107 +115,24 @@
 	   });
 	}());
 	*/
-	nc.model = (function(){
+	quikr.cars.nc.model = (function(){
 		
 		return {};
 	}());
 	
-	nc.data = (function(){
-		var datajson = function(){
-			var model = 
-							{
-								"modal": [
-									{
-										"modal_name": "Maruti Suzuki Baleno",
-										"features": {
-											"price": "S",
-											"engine": ""
-										},
-										"color": [
-											"red",
-											"urban titanium black"
-										],
-										"variants": [
-											{
-												"variant_name": "HoVTEC",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											},
-											{
-												"variant_name": "asdsadas",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											}
-										]
-									},
-									{
-										"name": "Maruti Suzuki Baleno",
-										"features": {
-											"price": "S",
-											"engine": ""
-										},
-										"color": [
-											"red",
-											"urban titanium black"
-										],
-										"variants": [
-											{
-												"variant_name": "HoVTEC",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											},
-											{
-												"variant_name": "asdsadas",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											}
-										]
-									},
-									{
-										"modal_name": "Maruti Suzuki Baleno",
-										"features": {
-											"price": "S",
-											"engine": ""
-										},
-										"color": [
-											"red",
-											"urban titanium black"
-										],
-										"variants": [
-											{
-												"variant_name": "HoVTEC",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											},
-											{
-												"variant_name": "asdsadas",
-												"features": {
-													"price": "S",
-													"engine": ""
-												},
-												"price": "5.20"
-											}
-										]
-									}
-								]
-							} /* JSON closes */
-			
-			return model;
-		}		
+	quikr.cars.nc.data = (function(){
 	}());
 	
+	quikr.cars.nc.applyFilter = function(element){
+		var url=$(element).attr('href')+'?ajax=true';
+		$.ajax({
+			url:url,
+			dataType:'json',
+			success:function(result){
+				console.log(result);
+			},
+			error:function(result){
+				console.log('error');
+			}
+		});
+	};

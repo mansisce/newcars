@@ -18,6 +18,45 @@ div.wrapper {
   /* closes the cta */
   /* closes the nav.*/
   /* close the color section*/
+  /*
+div.carousel-control {
+    // Hover/focus state
+    &:hover,
+    &:focus {
+    }
+    &#d-variant-carousel {
+
+    }
+    .icon-prev, .icon-close,
+    .icon-next{
+        &#d-gallery-carousel {
+          @media screen and (min-width: @screen-sm-min) {
+          }
+
+              
+          position: absolute;
+          top: 50%;
+          margin-top: -10px;
+          z-index: 5;
+          display: inline-block;
+        }
+        .icon-prev {  
+          @media screen and (min-width: @screen-sm-min) {
+              margin-left: -15px;
+            }
+          left: 50%;
+          margin-left: -10px;
+        }
+        .icon-next{
+          right: 50%;
+          margin-right: -10px;
+          @media screen and (min-width: @screen-sm-min) {
+              margin-right: -15px;
+            }
+        }
+    }
+}
+*/
   margin-top: 30px;
 }
 div.wrapper li {
@@ -762,6 +801,19 @@ div.wrapper section.nc-details .nc-nav-tabs li:first-child {
 div.wrapper .carousel {
   width: 100%;
 }
+div.wrapper .carousel .carousel-control .icon-prev,
+div.wrapper .carousel .carousel-control .icon-next {
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+}
+div.wrapper .carousel .carousel-control .icon-arrows_right,
+div.wrapper .carousel .carousel-control .icon-arrows_left {
+  /*
+          font-size: 36px;
+          line-height: 1em;
+        */
+}
 div.wrapper .carousel .item .carousel-caption {
   background-color: rgba(0, 0, 0, 0.85);
   padding: 10px 15px;
@@ -792,48 +844,18 @@ div.wrapper #m-gallery-carousel .thumbnail {
   float: left;
   width: 25%;
 }
-div.wrapper div.carousel-control .icon-prev#d-gallery-carousel,
-div.wrapper div.carousel-control .icon-close#d-gallery-carousel,
-div.wrapper div.carousel-control .icon-next#d-gallery-carousel {
-  /*          
-          position: absolute;
-          top: 50%;
-          margin-top: -10px;
-          z-index: 5;
-          display: inline-block;
-          */
-  background-color: #3c3c3c;
+div.wrapper #d-variant-carousel .carousel-control.left,
+div.wrapper #d-variant-carousel .carousel-control.right {
+  background-image: none;
 }
-div.wrapper div.carousel-control .icon-prev .icon-prev,
-div.wrapper div.carousel-control .icon-close .icon-prev,
-div.wrapper div.carousel-control .icon-next .icon-prev {
-  left: 50%;
-  margin-left: -10px;
+div.wrapper #d-variant-carousel .carousel-control .icon-prev {
+  left: 15px;
 }
-@media screen and (min-width: 768px) {
-  div.wrapper div.carousel-control .icon-prev .icon-prev,
-  div.wrapper div.carousel-control .icon-close .icon-prev,
-  div.wrapper div.carousel-control .icon-next .icon-prev {
-    margin-left: -15px;
-  }
+div.wrapper #d-variant-carousel .carousel-control .icon-prev {
+  left: 15px;
 }
-div.wrapper div.carousel-control .icon-prev .icon-next,
-div.wrapper div.carousel-control .icon-close .icon-next,
-div.wrapper div.carousel-control .icon-next .icon-next {
-  right: 50%;
-  margin-right: -10px;
-}
-@media screen and (min-width: 768px) {
-  div.wrapper div.carousel-control .icon-prev .icon-next,
-  div.wrapper div.carousel-control .icon-close .icon-next,
-  div.wrapper div.carousel-control .icon-next .icon-next {
-    margin-right: -15px;
-  }
-}
-div.wrapper div.carousel-control .icon-arrows_right,
-div.wrapper div.carousel-control .icon-arrows_left {
-  font-size: 36px;
-  line-height: 1em;
+div.wrapper #d-variant-carousel .carousel-control .icon-next {
+  right: 15px;
 }
 div.wrapper .frm-select {
   background: none;
