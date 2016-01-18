@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>list-view</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="list-view" sketch:type="MSArtboardGroup" fill="#000000">
+            <path d="M56.4285714,95 L56.4285714,82.1428571 L95,82.1428571 L95,95 L56.4285714,95 L56.4285714,95 Z M56.4285714,56.4285714 L95,56.4285714 L95,69.2857143 L56.4285714,69.2857143 L56.4285714,56.4285714 L56.4285714,56.4285714 Z M56.4285714,30.7142857 L95,30.7142857 L95,43.5714286 L56.4285714,43.5714286 L56.4285714,30.7142857 L56.4285714,30.7142857 Z M56.4285714,5 L95,5 L95,17.8571429 L56.4285714,17.8571429 L56.4285714,5 L56.4285714,5 Z M5,56.4285714 L43.5714286,56.4285714 L43.5714286,95 L5,95 L5,56.4285714 L5,56.4285714 Z M5,5 L43.5714286,5 L43.5714286,43.5714286 L5,43.5714286 L5,5 L5,5 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

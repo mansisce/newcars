@@ -1,0 +1,235 @@
+/*
+  Icon Font: quikr-icons
+*/
+
+@font-face {
+    font-family: 'proxima_nova';
+    src: url('proxima_nova-light.eot');
+    src: url('proxima_nova-light.eot?#iefix') format('embedded-opentype'),
+         url('proxima_nova-light.woff2') format('woff2'),
+         url('proxima_nova-light.woff') format('woff'),
+         url('proxima_nova-light.ttf') format('truetype'),
+         url('proxima_nova-light.svg#proxima_novalight') format('svg');
+    font-weight: lighter;
+    font-style: normal;
+
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('glyphicons-halflings-regular.eot');
+  src: url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('glyphicons-halflings-regular.woff') format('woff'), url('glyphicons-halflings-regular.ttf') format('truetype'), url('glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+
+
+@font-face {
+    font-family: 'proxima_nova';
+    src: url('proxima_nova-regular.eot');
+    src: url('proxima_nova-regular.eot?#iefix') format('embedded-opentype'),
+         url('proxima_nova-regular.woff2') format('woff2'),
+         url('proxima_nova-regular.woff') format('woff'),
+         url('proxima_nova-regular.ttf') format('truetype'),
+         url('proxima_nova-regular.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'proxima_nova';
+    src: url('proxima_nova-semibold.eot');
+    src: url('proxima_nova-semibold.eot?#iefix') format('embedded-opentype'),
+         url('proxima_nova-semibold.woff2') format('woff2'),
+         url('proxima_nova-semibold.woff') format('woff'),
+         url('proxima_nova-semibold.ttf') format('truetype'),
+         url('proxima_nova-semibold.svg#proxima_novasemibold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'OpenSans-Semibold';
+  src: url('OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),  url('OpenSans-Semibold.woff') format('woff'), url('OpenSans-Semibold.ttf')  format('truetype'), url('OpenSans-Semibold.svg#OpenSans-Semibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "quikr-icons";
+  src: url("quikr-icons_348d06f944061f199d5b997cec3b2035.eot");
+  src: url("quikr-icons_348d06f944061f199d5b997cec3b2035.eot?#iefix") format("embedded-opentype"),
+       url("quikr-icons_348d06f944061f199d5b997cec3b2035.woff") format("woff"),
+       url("quikr-icons_348d06f944061f199d5b997cec3b2035.ttf") format("truetype"),
+       url("quikr-icons_348d06f944061f199d5b997cec3b2035.svg#quikr-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "quikr-icons";
+    src: url("quikr-icons_348d06f944061f199d5b997cec3b2035.svg#quikr-icons") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icon-basic-call:before,
+.icon-basic-chat:before,
+.icon-basic-description:before,
+.icon-basic-details:before,
+.icon-basic-noFikar:before,
+.icon-basic-reply:before,
+.icon-basic-user1:before,
+.icon-basic_bookmark:before,
+.icon-basic_clessidre:before,
+.icon-basic_clock:before,
+.icon-basic_cloud:before,
+.icon-basic_display:before,
+.icon-basic_download:before,
+.icon-basic_exclamation:before,
+.icon-basic_eye:before,
+.icon-basic_eye_closed:before,
+.icon-basic_flag1:before,
+.icon-basic_flag2:before,
+.icon-basic_floppydisk:before,
+.icon-basic_folder:before,
+.icon-basic_folder_multiple:before,
+.icon-basic_gear:before,
+.icon-basic_geolocalize-01:before,
+.icon-basic_geolocalize-05:before,
+.icon-basic_gunsight:before,
+.icon-basic_hamburger:before,
+.icon-basic_heart:before,
+.icon-basic_heart_filled:before,
+.icon-basic_home:before,
+.icon-basic_keyboard:before,
+.icon-basic_link:before,
+.icon-basic_lock:before,
+.icon-basic_lock_open:before,
+.icon-basic_magnifier:before,
+.icon-basic_magnifier_minus:before,
+.icon-basic_magnifier_plus:before,
+.icon-basic_mail:before,
+.icon-basic_mail_open:before,
+.icon-basic_mail_open_text:before,
+.icon-basic_map:before,
+.icon-basic_message:before,
+.icon-basic_mixer2:before,
+.icon-basic_paperplane:before,
+.icon-basic_photo:before,
+.icon-basic_picture:before,
+.icon-basic_picture_multiple:before,
+.icon-basic_pin2:before,
+.icon-basic_printer:before,
+.icon-basic_question:before,
+.icon-basic_quikr_bike:before,
+.icon-basic_quikr_car:before,
+.icon-basic_quikr_truck:before,
+.icon-basic_rss:before,
+.icon-basic_share:before,
+.icon-basic_sheet_multiple:before,
+.icon-basic_smartphone:before,
+.icon-basic_star:before,
+.icon-basic_todo:before,
+.icon-basic_todo_pen:before,
+.icon-basic_todo_pencil:before,
+.icon-basic_todo_txt:before,
+.icon-basic_trashcan:before,
+.icon-basic_upload:before,
+.icon-basic_user2:before,
+.icon-basic_world:before,
+.icon-quikr-verified:before,
+.icon-quikr_certified:before,
+.icon-quikr_certified_2:before,
+.icon-rupee-symbol:before {
+  display: inline-block;
+  font-family: "quikr-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.icon-basic-call:before { content: "\f140"; }
+.icon-basic-chat:before { content: "\f141"; }
+.icon-basic-description:before { content: "\f142"; }
+.icon-basic-details:before { content: "\f143"; }
+.icon-basic-noFikar:before { content: "\f144"; }
+.icon-basic-reply:before { content: "\f145"; }
+.icon-basic-user1:before { content: "\f13a"; }
+.icon-basic_bookmark:before { content: "\f100"; }
+.icon-basic_clessidre:before { content: "\f101"; }
+.icon-basic_clock:before { content: "\f102"; }
+.icon-basic_cloud:before { content: "\f103"; }
+.icon-basic_display:before { content: "\f104"; }
+.icon-basic_download:before { content: "\f105"; }
+.icon-basic_exclamation:before { content: "\f106"; }
+.icon-basic_eye:before { content: "\f107"; }
+.icon-basic_eye_closed:before { content: "\f108"; }
+.icon-basic_flag1:before { content: "\f109"; }
+.icon-basic_flag2:before { content: "\f10a"; }
+.icon-basic_floppydisk:before { content: "\f10b"; }
+.icon-basic_folder:before { content: "\f10c"; }
+.icon-basic_folder_multiple:before { content: "\f10d"; }
+.icon-basic_gear:before { content: "\f10e"; }
+.icon-basic_geolocalize-01:before { content: "\f10f"; }
+.icon-basic_geolocalize-05:before { content: "\f110"; }
+.icon-basic_gunsight:before { content: "\f111"; }
+.icon-basic_hamburger:before { content: "\f134"; }
+.icon-basic_heart:before { content: "\f112"; }
+.icon-basic_heart_filled:before { content: "\f139"; }
+.icon-basic_home:before { content: "\f113"; }
+.icon-basic_keyboard:before { content: "\f114"; }
+.icon-basic_link:before { content: "\f115"; }
+.icon-basic_lock:before { content: "\f116"; }
+.icon-basic_lock_open:before { content: "\f117"; }
+.icon-basic_magnifier:before { content: "\f118"; }
+.icon-basic_magnifier_minus:before { content: "\f119"; }
+.icon-basic_magnifier_plus:before { content: "\f11a"; }
+.icon-basic_mail:before { content: "\f11b"; }
+.icon-basic_mail_open:before { content: "\f11c"; }
+.icon-basic_mail_open_text:before { content: "\f11d"; }
+.icon-basic_map:before { content: "\f11e"; }
+.icon-basic_message:before { content: "\f11f"; }
+.icon-basic_mixer2:before { content: "\f120"; }
+.icon-basic_paperplane:before { content: "\f121"; }
+.icon-basic_photo:before { content: "\f122"; }
+.icon-basic_picture:before { content: "\f123"; }
+.icon-basic_picture_multiple:before { content: "\f124"; }
+.icon-basic_pin2:before { content: "\f125"; }
+.icon-basic_printer:before { content: "\f126"; }
+.icon-basic_question:before { content: "\f127"; }
+.icon-basic_quikr_bike:before { content: "\f136"; }
+.icon-basic_quikr_car:before { content: "\f137"; }
+.icon-basic_quikr_truck:before { content: "\f138"; }
+.icon-basic_rss:before { content: "\f128"; }
+.icon-basic_share:before { content: "\f129"; }
+.icon-basic_sheet_multiple:before { content: "\f12a"; }
+.icon-basic_smartphone:before { content: "\f12b"; }
+.icon-basic_star:before { content: "\f12c"; }
+.icon-basic_todo:before { content: "\f12d"; }
+.icon-basic_todo_pen:before { content: "\f12e"; }
+.icon-basic_todo_pencil:before { content: "\f12f"; }
+.icon-basic_todo_txt:before { content: "\f130"; }
+.icon-basic_trashcan:before { content: "\f131"; }
+.icon-basic_upload:before { content: "\f132"; }
+.icon-basic_user2:before { content: "\f13b"; }
+.icon-basic_world:before { content: "\f133"; }
+.icon-quikr-verified:before { content: "\f13c"; }
+.icon-quikr_certified:before { content: "\f13d"; }
+.icon-quikr_certified_2:before { content: "\f13f"; }
+.icon-rupee-symbol:before { content: "\f13e"; }
