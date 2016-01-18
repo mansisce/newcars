@@ -1,26 +1,26 @@
 @font-face {
   font-family: 'ProximaNova-Light';
-  src: url('./css/font/proxima-nova/2E7201_0_0.eot');
-  src: url('./css/font/proxima-nova/2E7201_0_0.eot?#iefix') format('embedded-opentype'), 
-	  url('./css/font/proxima-nova/2E7201_0_0.woff2') format('woff2'),
-	  url('./css/font/proxima-nova/2E7201_0_0.woff') format('woff'),
-	  url('css/font/proxima-nova/2E7201_0_0.ttf') format('truetype');
+  src: url('./font/proxima-nova/2E7201_0_0.eot');
+  src: url('./font/proxima-nova/2E7201_0_0.eot?#iefix') format('embedded-opentype'), 
+	  url('./font/proxima-nova/2E7201_0_0.woff2') format('woff2'),
+	  url('./font/proxima-nova/2E7201_0_0.woff') format('woff'),
+	  url('./font/proxima-nova/2E7201_0_0.ttf') format('truetype');
 }
 @font-face {
   font-family: 'ProximaNova-Regular';
-  src: url('./css/font/proxima-nova/2E7201_1_0.eot');
-  src: url('./css/font/proxima-nova/2E7201_1_0.eot?#iefix') format('embedded-opentype'), 
-	   url('./css/font/proxima-nova/2E7201_1_0.woff2') format('woff2'), 
-	   url('./css/font/proxima-nova/2E7201_1_0.woff') format('woff'),
-	   url('./css/font/proxima-nova/2E7201_1_0.ttf') format('truetype');
+  src: url('./font/proxima-nova/2E7201_1_0.eot');
+  src: url('./font/proxima-nova/2E7201_1_0.eot?#iefix') format('embedded-opentype'), 
+	   url('./font/proxima-nova/2E7201_1_0.woff2') format('woff2'), 
+	   url('./font/proxima-nova/2E7201_1_0.woff') format('woff'),
+	   url('./font/proxima-nova/2E7201_1_0.ttf') format('truetype');
 }
 @font-face {
   font-family: 'ProximaNova-Semibold';
-  src: url('./css/font/proxima-nova/2E7201_2_0.eot');
-  src: url('./css/font/proxima-nova/2E7201_2_0.eot?#iefix') format('embedded-opentype'),
-	   url('./css/font/proxima-nova/2E7201_2_0.woff2') format('woff2'),
-	   url('./css/font/proxima-nova/2E7201_2_0.woff') format('woff'),
-	   url('./css/font/proxima-nova/2E7201_2_0.ttf') format('truetype');
+  src: url('./font/proxima-nova/2E7201_2_0.eot');
+  src: url('./font/proxima-nova/2E7201_2_0.eot?#iefix') format('embedded-opentype'),
+	   url('./font/proxima-nova/2E7201_2_0.woff2') format('woff2'),
+	   url('./font/proxima-nova/2E7201_2_0.woff') format('woff'),
+	   url('./font/proxima-nova/2E7201_2_0.ttf') format('truetype');
 }
 /* button color for primary button */
 /* equal to 14px */
