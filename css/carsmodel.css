@@ -456,6 +456,7 @@ div.wrapper section.nc-features {
   border-top: 2px solid #ddd;
   border-bottom: 2px solid #ddd;
   background-color: #fbfbfb;
+  overflow-x: auto;
 }
 div.wrapper section.nc-features ul {
   margin-bottom: 0;
@@ -505,30 +506,52 @@ div.wrapper section.nc-gallery {
   margin-bottom: 100px;
   padding-top: 40px;
 }
-div.wrapper section.nc-gallery .modal .modal-content {
+div.wrapper section.nc-gallery .modal.m-gallery-modal {
+  /*display: block; */
+  /* padding: 4px; */
+  /* margin-bottom: 20px; */
+  /* line-height: 1.42857143; */
+  /* background-color: #fff; */
+  /* border: 1px solid #ddd; */
+  /* border-radius: 4px; */
+  /* -webkit-transition: border .2s ease-in-out; */
+  /* -o-transition: border .2s ease-in-out; */
+  /* transition: border .2s ease-in-out; */
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content {
   background-color: #000;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-header {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-header {
   border-bottom: 0;
   padding: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-header h4.modal-title {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-header h4.modal-title {
   color: #fff;
   width: 82%;
   padding-top: 10px;
   padding-left: 15px;
   padding-bottom: 10px;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-body {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-body {
   padding: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-body .carousel .item .carousel-caption {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-body .carousel .item .carousel-caption {
   top: 0;
   right: 0;
   bottom: auto;
   left: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav {
+  padding-right: 29px;
+  padding-left: 29px;
+  border: 0;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li {
   list-style: none;
   display: table-cell;
   width: 1%;
@@ -536,15 +559,26 @@ div.wrapper section.nc-gallery .modal .modal-content .modal-footer li {
   vertical-align: middle;
   float: none;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li a {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li a {
   color: #fff;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li.active a {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li.active a {
   background-color: transparent;
   border: 0;
 }
-div.wrapper section.nc-gallery .modal .modal-content .modal-footer li.active:hover a {
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li.active:hover a {
   border-bottom: red;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .tab-content {
+  padding-right: 29px;
+  padding-left: 29px;
+  background-color: grey;
+  padding-top: 10px;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .m-toggle-thumbnail {
+  text-align: center;
+  color: #fff;
+  padding: 17px;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
@@ -789,6 +823,15 @@ div.wrapper #m-thumbnail-all .thumbnail,
 div.wrapper #m-thumbnail-interior .thumbnail {
   float: left;
   width: 25%;
+  background-color: grey;
+  border: 0;
+  min-height: 100%;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+div.wrapper #m-thumbnail-all .thumbnail img,
+div.wrapper #m-thumbnail-interior .thumbnail img {
+  border-radius: 4px;
 }
 div.wrapper #d-variant-carousel .carousel-control.right,
 div.wrapper #d-variant-carousel .carousel-control.left {
