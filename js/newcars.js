@@ -23,7 +23,7 @@
 		//
 	}());
 	quikr.cars.nc.view = (function(){		
-		var onnavclick = function(){
+		var navmodule = (function(){
 			//add the animation class: animate the anchor on hover
 			//add the animation class for mobile for the drop down. 
 			//on click of nav link scroll to the section.
@@ -31,8 +31,55 @@
 			$("nav.js-nc-nav div:first-child").on("click",function(){
 				//$("nav.js-nc-nav").find("ul:first-of-type").toggleClass("hidden-xs").addClass("");
 				$('.m-nav-top').modal('show');
-			});		
-		};
+			});	
+
+			/*
+			var _getSectionObjForHash = function(){
+
+
+			}
+			*/
+
+			var _scrollToSection = function(obj$){					
+		        $('html,body').animate({
+		          scrollTop: obj$.offset().top
+		        }, 1000);
+			};
+
+
+			var onnavclick =function(){				
+				$("nav.js-nc-nav li>a").on("click", function(){
+						var classOfTarget = $(this).attr("href");
+						classOfTarget = classOfTarget.substring(1);
+						var target = $("."+classOfTarget);
+						_scrollToSection(target);
+						return false;
+				});	
+				
+
+
+				/*
+			  $('a[id=ncvariantid][href*=#]:not([href=#])').click(function() {
+			  		console.log("Sdfdsfds");
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			      var target = $(this.hash);
+			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			      if (target.length) {
+			        $('html,body').animate({
+			          scrollTop: target.offset().top
+			        }, 1000);       
+			    
+			                 
+			      }
+			    }
+			  });				
+			*/
+	
+
+			}
+			onnavclick();
+			return {};
+		}());
 		
 		/*		
 		var onNavClick = function(){
@@ -64,7 +111,6 @@
 		
 		var onscroll = function(){				
 		}
-		onnavclick();
 		onscroll();
 		ongallerythumbclick();
 
@@ -115,6 +161,54 @@
 	   });
 	}());
 	*/
+
+	quikr.cars.nc.view.inputFields = (function(){
+		 $( ".uline-input" ).each(function() {
+          if($(this).val() !== ''){
+            $(this).parent().addClass('txt-focus');
+          }
+          if($(this).attr('disabled')){
+            $(this).parent().addClass('input-disabled');
+          }
+          else{
+            $(this).parent().removeClass('input-disabled');
+          }
+          $(this).focus(function(){
+            console.log($(this).val());
+           
+          $(this).parent().addClass("txt-focus");
+        }).blur(function(){
+            $(this).parent().removeClass("txt-focus");
+            if($(this).val() !== ''){
+              $(this).parent().addClass("txt-focus");
+            }
+          });
+        });
+
+        $(".popular-select-input").on("input", function() {
+            var text_value=$(this).val();
+             if(text_value!='') 
+               {
+                $(this).parent().addClass('open pap-ddm-open');
+                }
+                else{
+                    $(this).parent().removeClass('open pap-ddm-open');
+                }
+        });
+
+        $(".select-ddm .selectalbe-list li ").click(function(){
+          $(this).parents(".pap-ddm").children('.uline-select-ph').addClass('lbl-focus');
+        });
+
+        $(".selectalbe-list li").click(function(){
+        $(this).parents(".dropdown").find('button').html($(this).text());
+        $(this).parents(".pap-ddm").find('input').val($(this).children().text());
+        $(this).parents(".dropdown").find('input').val($(this).text());
+        $(this).parents('.pap-ddm').removeClass('pap-ddm-open');
+        });
+		
+	}());
+
 	quikr.cars.nc.model = (function(){
 		
 		return {};
@@ -123,16 +217,21 @@
 	quikr.cars.nc.data = (function(){
 	}());
 	
+
 	quikr.cars.nc.applyFilter = function(element){
-		//var url=$(element).attr('href')+'/?ajax=true';
-		var url ="http://www.quikr.com/cars-bikes/new+Ashok-Leyland+Mumbai+17/?ajax=true";
+		var url = $(element).attr('href');
+		var ajaxUrl=$(element).attr('href')+'/?ajax=true';
+		//var url ="http://www.quikr.com/cars-bikes/new+Ashok-Leyland+Mumbai+17/?ajax=true";
 		$.ajax({
-			url:url,
+			url:ajaxUrl,
 			dataType:'json',
 			success:function(result){
 				$('.js-nc-filters').html(result['filters']);
 				$('.js-nc-breadcrumb').html(result['breadcrumb']);
 				$('.js-nc-snbcard-column').html(result['searchResults']);
+				quikr.cars.nc.attachEventsToFilters();
+				window.history.pushState(result, "Quikr New Cars", url);
+				window.onpopstate = quikr.cars.nc.changeHtmlOnPopState;
 			},
 			error:function(error){
 				console.log(error);
@@ -140,9 +239,126 @@
 		});
 	};
 
+quikr.cars.nc.changeHtmlOnPopState = function(e){
+    if(e.state){
+        var filters = e.state.filters;
+        var breadcrumb = e.state.breadcrumb;
+        var searchResults = e.state.searchResults;
+        $('.js-nc-filters').html(filters);
+		$('.js-nc-breadcrumb').html(breadcrumb);
+		$('.js-nc-snbcard-column').html(searchResults);
+		quikr.cars.nc.attachEventsToFilters();
+        document.title = e.state.pageTitle;
+    }
+    else{
+    	window.location.href = window.location.href
+    }
+};
 
-$(".sticky-filters-nav li a").click(function(event){
-	event.preventDefault();
+quikr.cars.nc.attachEventsToFilters = function(){
+	$(".js-nc-filters a").click(function(e){
+	e.preventDefault();
 	quikr.cars.nc.applyFilter(this);
-	return false;
+	});
+	$(".js-nc-breadcrumb li.clear a").click(function(e){
+	e.preventDefault();
+	quikr.cars.nc.applyFilter(this);
+	});
+	$(".js-nc-breadcrumb li.reset a").click(function(e){
+	e.preventDefault();
+	quikr.cars.nc.applyFilter(this);
+	});
+}
+
+quikr.cars.nc.attachEventsOnModelPage = function(e){
+	$(".js-desktop-images figure").click(quikr.cars.nc.corouselLazyLoad);
+}
+
+quikr.cars.nc.changeCity = function(city){
+	windo.location.href = window.location.href;
+}
+
+
+$(document).ready(function(){
+	quikr.cars.nc.attachEventsToFilters();
+	quikr.cars.nc.attachEventsOnModelPage();
+	$(".lazy").lazyload({
+		threshold:400
+	});
 });
+
+
+quikr.cars.nc.corouselLazyLoad = function(){
+	$(".js-desktop-corousel .item img").each(function(){
+		$(this).attr('src',$(this).attr('data-original'));
+	});
+};
+
+quikr.cars.nc.model.onroadcalculator = (function(){
+	var _bindPopStateHandler = function(){
+		$(window).on('popstate', function(e){
+		    if(e.state){
+		        var result = e.state.result;
+		        $("#js-onroad-page-container").html(result);
+		        document.title = e.state.pageTitle;
+		    }
+		    else{
+		    	window.location.href = window.location.href
+		    }
+		});
+	}
+	
+	var _onRoadCalculatorFromOnRoadPage = function(element){
+		var url = $(element).attr('href');
+		var ajaxUrl=url+'/?ajax=true';
+		$.ajax({
+			url:ajaxUrl,
+			dataType:'text',
+			success:function(result){
+				$("#js-onroad-page-container").html(result);
+				var stateObj = { result: result };
+				window.history.pushState(stateObj, "Quikr New Cars", url);
+				_bindPopStateHandler();
+				attachOnRoadCalculator();
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+	};
+
+	var _onRoadCalculatorFromSnb = function(element){
+		var url = $(element).attr('href');
+		var ajaxUrl=url+'/?ajax=true&from=SNB';
+		$.ajax({
+			url:ajaxUrl,
+			dataType:'text',
+			success:function(result){
+
+				$("#js-snb-onroadPrice-container").html(result);
+				//console.log(result);
+				attachOnRoadCalculator();
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+
+	};
+	var attachOnRoadCalculator = function(){
+		
+		$(".js-snb-onroadprice-list li a,#js-submit-onprice-calculator-snb").on("click",function(e){
+			e.preventDefault();
+			_onRoadCalculatorFromSnb(this);
+		});
+		
+		
+		$(".js-dropdown-list li a").on("click",function(e){
+			e.preventDefault();
+			_onRoadCalculatorFromOnRoadPage(this);
+		});
+		
+	};
+
+	attachOnRoadCalculator();
+}());

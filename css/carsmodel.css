@@ -12,6 +12,9 @@
   vertical-align: middle;
   float: none;
 }
+body {
+  background-color: #fff;
+}
 div.wrapper {
   /* closes the mask */
   /* closes the cta */
@@ -860,6 +863,37 @@ div.wrapper .frm-select {
   font-size: 0.85em;
   border: 0;
   font-family: 'ProximaNova-Regular';
+}
+div.wrapper .uline-input {
+  box-shadow: none;
+  border: 0;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  padding: 15px 0 0px;
+  height: auto;
+  font-size: 0.9em;
+  color: #000;
+  position: relative;
+  z-index: 2;
+  background: none;
+  text-align: left;
+  transition: all ease-in 0.2s;
+}
+div.wrapper .uline-ph {
+  display: block;
+  position: absolute;
+  top: 15px;
+  font-size: 0.8em;
+  font-family: 'ProximaNova-Regular';
+  color: #7c7c7c;
+  font-weight: normal;
+  z-index: 1;
+  transition: all ease-in 0.2s;
+}
+div.wrapper .txt-focus .uline-ph {
+  top: 0;
+  font-size: 0.7em;
+  color: #ADAFAE;
 }
 /* closes the page level div or the page container */
 div.roadPriceModal .modal-dialog {
