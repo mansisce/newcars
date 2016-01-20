@@ -180,6 +180,28 @@ div.wrapper div.nc-cta.animate-cta a {
   -khtml-opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
 }
+div.wrapper section.nc-heading.navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: #ffffff;
+  -webkit-box-shadow: 0 1px 1px #ddd;
+  -moz-box-shadow: 0 1px 1px #ddd;
+  box-shadow: 0 1px 1px #ddd;
+  /*     box-shadow: 0 1px 1px #ddd; */
+  padding-bottom: 10px;
+  padding-top: 10px;
+  -webkit-transition: opacity 0.4s ease-in;
+  -moz-transition: opacity 0.4s ease-in;
+  -ms-transition: opacity 0.4s ease-in;
+  -o-transition: opacity 0.4s ease-in;
+  transition: opacity 0.4s ease-in;
+}
+div.wrapper section.nc-heading.navbar-fixed .nc-cta-price {
+  text-align: right;
+}
 div.wrapper nav.nc-nav {
   -webkit-transition: 0.45s all cubic-bezier(1s, 0.46, 0.45, 0.94);
   -moz-transition: 0.45s all cubic-bezier(1s, 0.46, 0.45, 0.94);
@@ -205,14 +227,25 @@ div.wrapper nav.nc-nav {
 div.wrapper nav.nc-nav select.frm-select {
   border-bottom: 1px solid #ddd;
 }
+div.wrapper nav.nc-nav ul {
+  margin-bottom: 0;
+  line-height: 1em;
+  /* vertical-align: middle; */
+  padding-top: 10px;
+}
 div.wrapper nav.nc-nav ul li {
   text-transform: uppercase;
 }
 div.wrapper nav.nc-nav ul li a {
   color: #3c3c3c;
+  padding-bottom: 3px;
 }
-div.wrapper nav.nc-nav ul li a:hover {
+div.wrapper nav.nc-nav ul li a:hover,
+div.wrapper nav.nc-nav ul li a:active,
+div.wrapper nav.nc-nav ul li a:visited,
+div.wrapper nav.nc-nav ul li a:focus {
   color: #008bcf;
+  border-bottom: 2px solid #008bcf;
 }
 div.wrapper.animate-in nav.nc-nav {
   -webkit-transform: translate3d(0px, 0px, 0px);
@@ -502,6 +535,31 @@ div.wrapper section.nc-features ul li span:last-child:before {
   background-color: #7c7c7c;
   margin: 10px auto;
 }
+div.wrapper ._imagehover {
+  opacity: .2;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+div.wrapper ._figcaption figcaption {
+  position: absolute;
+  top: 26%;
+  line-height: 1em;
+  left: 12%;
+  color: #ffffff;
+}
+div.wrapper ._figcaption figcaption span {
+  display: block;
+}
+div.wrapper ._figcaption figcaption span:first-child {
+  font-size: 80px;
+  line-height: 1em;
+}
+div.wrapper ._figcaption figcaption span:last-child {
+  font-size: 36px;
+}
 div.wrapper section.nc-gallery {
   -webkit-box-shadow: 0 -3px 8px #eee;
   -moz-box-shadow: 0 -3px 8px #eee;
@@ -660,11 +718,10 @@ div.wrapper section.nc-gallery .nc-gallery-all figure > div img {
 div.wrapper section.nc-gallery .nc-gallery-all figure > div img:hover {
   opacity: .2;
   -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
   transform: scale(1.2);
-}
-div.wrapper section.nc-gallery .nc-gallery-all figure > div:nth-child(4n) {
-  margin-right: 0;
 }
 div.wrapper section.nc-gallery .nc-gallery-all figure figcaption h2 {
   color: #fff;
@@ -681,6 +738,75 @@ div.wrapper section.nc-gallery .nc-gallery-all figure figcaption h2 {
 div.wrapper section.nc-gallery .nc-gallery-all figure figcaption:hover {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) img {
+  opacity: .2;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) figcaption {
+  position: absolute;
+  top: 26%;
+  line-height: 1em;
+  left: 12%;
+  color: #ffffff;
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) figcaption span {
+  display: block;
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) figcaption span:first-child {
+  font-size: 80px;
+  line-height: 1em;
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) figcaption span:last-child {
+  font-size: 36px;
+}
+div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(2n) > div {
+  margin-right: 0;
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) img {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(2n) > div {
+    margin-right: 5px;
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) img {
+    opacity: .2;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) figcaption {
+    position: absolute;
+    top: 26%;
+    line-height: 1em;
+    left: 12%;
+    color: #ffffff;
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) figcaption span {
+    display: block;
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) figcaption span:first-child {
+    font-size: 80px;
+    line-height: 1em;
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) figcaption span:last-child {
+    font-size: 36px;
+  }
+  div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4n) > div {
+    margin-right: 0;
+  }
 }
 div.wrapper section.nc-details {
   margin-top: 60px;
@@ -893,7 +1019,7 @@ div.wrapper .uline-ph {
 div.wrapper .txt-focus .uline-ph {
   top: 0;
   font-size: 0.7em;
-  color: #ADAFAE;
+  color: #008bcf;
 }
 /* closes the page level div or the page container */
 div.roadPriceModal .modal-dialog {

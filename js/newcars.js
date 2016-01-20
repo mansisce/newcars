@@ -1,6 +1,7 @@
 	var quikr = quikr || {};
 	quikr.cars = quikr.cars || {};
 	quikr.cars.nc = {};
+	quikr.cars.nc.modelPage = {}
 	quikr.cars.nc.init = (function(){
 
 		this.MOBILE = "767";
@@ -33,51 +34,73 @@
 				$('.m-nav-top').modal('show');
 			});	
 
-			/*
-			var _getSectionObjForHash = function(){
-
-
-			}
-			*/
-
-			var _scrollToSection = function(obj$){					
+			var _scrollToSection = function(obj$,offset){
+				var offset = offset || 0;
+				var val = obj$.offset().top+offset;
+				console.log("offset is"+offset);
 		        $('html,body').animate({
-		          scrollTop: obj$.offset().top
+		          scrollTop: val
 		        }, 1000);
 			};
 
 
 			var onnavclick =function(){				
 				$("nav.js-nc-nav li>a").on("click", function(){
+						var offset = $(".nc-heading").height();
+						console.log("offset is"+offset);
 						var classOfTarget = $(this).attr("href");
 						classOfTarget = classOfTarget.substring(1);
 						var target = $("."+classOfTarget);
-						_scrollToSection(target);
+						_scrollToSection(target,-offset);
 						return false;
 				});	
-				
-
-
-				/*
-			  $('a[id=ncvariantid][href*=#]:not([href=#])').click(function() {
-			  		console.log("Sdfdsfds");
-			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			      var target = $(this.hash);
-			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			      if (target.length) {
-			        $('html,body').animate({
-			          scrollTop: target.offset().top
-			        }, 1000);       
-			    
-			                 
-			      }
-			    }
-			  });				
-			*/
-	
-
 			}
+			var _getwindowpos = function(){
+				var pos = $(window).scrollTop();
+				return pos;
+			};
+			var stickyheader = function(){
+				var offset;
+				$(window).scroll(function() {
+						
+						var headerNavPos = $(".nc-mask").offset().top;
+						var ctaPricePos = $(".nc-cta").offset().top+100;
+
+						var topOfWindow = _getwindowpos();
+						var ctaPriceButton = $("section.nc-heading .nc-cta-price");
+
+						if (headerNavPos < topOfWindow) {
+							$(".nc-heading").addClass("navbar-fixed");
+							$(".nc-share").addClass("hidden");
+						}	
+						else {
+							$(".nc-share").removeClass("hidden");
+							$(".nc-heading").removeClass("navbar-fixed").addClass("");
+						}
+
+						if( ctaPricePos < topOfWindow ){
+							ctaPriceButton.removeClass("hidden");														
+						}
+						else
+						{
+							ctaPriceButton.addClass("hidden");							
+						}
+
+						var headernav = $(".nc-heading");
+						var share = $(".nc-share");
+
+						//alert("hi in mask");
+					//});		
+
+					//$(".nc-cta").each(function(){
+						//alert("hi in cta");
+					//});
+
+
+				});
+			};
 			onnavclick();
+			stickyheader();
 			return {};
 		}());
 		
@@ -102,7 +125,6 @@
 					$('#gallerymodal').modal('show');
 				}
 				else{
-					console.log($("#d-gallery-carousel").css("display"));
 					$("#d-gallery-carousel").removeClass("hidden",400);
 					//$("#d-gallery-carousel").show("400");
 				}
@@ -163,6 +185,8 @@
 	*/
 
 	quikr.cars.nc.view.inputFields = (function(){
+
+		var animatelabel = function(){
 		 $( ".uline-input" ).each(function() {
           if($(this).val() !== ''){
             $(this).parent().addClass('txt-focus');
@@ -174,7 +198,6 @@
             $(this).parent().removeClass('input-disabled');
           }
           $(this).focus(function(){
-            console.log($(this).val());
            
           $(this).parent().addClass("txt-focus");
         }).blur(function(){
@@ -206,6 +229,8 @@
         $(this).parents(".dropdown").find('input').val($(this).text());
         $(this).parents('.pap-ddm').removeClass('pap-ddm-open');
         });
+    	}
+    	return {animatelabel:animatelabel};
 		
 	}());
 
@@ -268,18 +293,17 @@ quikr.cars.nc.attachEventsToFilters = function(){
 	e.preventDefault();
 	quikr.cars.nc.applyFilter(this);
 	});
+	$(".lazy").lazyload({
+		threshold:400
+	});
 }
 
 quikr.cars.nc.attachEventsOnModelPage = function(e){
 	$(".js-desktop-images figure").click(quikr.cars.nc.corouselLazyLoad);
 }
 
-quikr.cars.nc.changeCity = function(city){
-	windo.location.href = window.location.href;
-}
-
-
 $(document).ready(function(){
+	$(".head-search").hide();
 	quikr.cars.nc.attachEventsToFilters();
 	quikr.cars.nc.attachEventsOnModelPage();
 	$(".lazy").lazyload({
@@ -310,6 +334,7 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 	
 	var _onRoadCalculatorFromOnRoadPage = function(element){
 		var url = $(element).attr('href');
+		var selectedCity=$("#js-selected-city").val()
 		var ajaxUrl=url+'/?ajax=true';
 		$.ajax({
 			url:ajaxUrl,
@@ -346,7 +371,7 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 
 	};
 	var attachOnRoadCalculator = function(){
-		
+		quikr.cars.nc.view.inputFields.animatelabel();
 		$(".js-snb-onroadprice-list li a,#js-submit-onprice-calculator-snb").on("click",function(e){
 			e.preventDefault();
 			_onRoadCalculatorFromSnb(this);
@@ -357,8 +382,132 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 			e.preventDefault();
 			_onRoadCalculatorFromOnRoadPage(this);
 		});
-		
+
+		$("#js-result-city-list li a").on("click",function(e){
+			e.preventDefault();
+			var url=window.location.href
+			var city=$(this).html();
+			var replaceCity=url.split("+");
+			replaceCity[replaceCity.length-1]=city
+			url=replaceCity.join("+");
+			$(this).attr("href",url);
+			_onRoadCalculatorFromOnRoadPage(this);
+		})
+
+		$("#js-submit-onprice-calculator").on("click",function(e){
+			e.preventDefault();
+			var url=$(this).attr("href")
+			var city=$("#js-selected-city").val();
+			var replaceCity=url.split("+");
+			replaceCity[replaceCity.length-1]=city
+			url=replaceCity.join("+");
+			window.location.href=url;
+		})
+
+		$("body").on('keyup',".popular-select-input",function(event){
+		    var searchKey = jQuery(this).val().toLowerCase();
+		    var list=$(this).nextAll("ul").find("li a");
+		    //console.log(className);
+		    if(searchKey.length > 0){
+		      list.hide();
+		      list.each(function(){
+		        var attrVal = jQuery(this).html();
+		        attrVal = jQuery.trim(attrVal);
+		        var subStr = attrVal.substr(0,searchKey.length).toLowerCase();
+		        if( searchKey == subStr ) {
+		          jQuery(this).css('display','block');
+		        }        
+		      });
+		    }
+		    if( searchKey == '' ) {
+		      list.show();
+		    }   
+
+		  })
+	
 	};
 
 	attachOnRoadCalculator();
 }());
+//on road price calculator Page
+
+quikr.cars.nc.applyOnRoadPriceFilters = function(element){
+	var url = $(element).attr('href');
+	var ajaxUrl=url+'/?ajax=true';
+	$.ajax({
+		url:ajaxUrl,
+		dataType:'text',
+		success:function(result){
+			$("#js-onroad-page-container").html(result);
+			var stateObj = { result: result };
+			window.history.pushState(stateObj, "Quikr New Cars", url);
+			quikr.cars.nc.attachEventsToOnRoadPriceFileters();
+		},
+		error:function(error){
+			console.log(error);
+		}
+	});
+};
+
+quikr.cars.nc.attachEventsToOnRoadPriceFileters = function(){
+	$(".js-dropdown-list li a").click(function(e){
+		e.preventDefault();
+		quikr.cars.nc.applyOnRoadPriceFilters(this);
+	});
+}
+
+window.onpopstate = function(e){
+    if(e.state){
+        var result = e.state.result;
+        $("#js-onroad-page-container").html(result);
+        document.title = e.state.pageTitle;
+    }
+    else{
+    	window.location.href = window.location.href
+    }
+};
+//SNB
+
+
+quikr.cars.nc.applyOnRoadPriceFiltersSNB = function(element){
+	var url = $(element).attr('href');
+	var ajaxUrl=url+'/?ajax=true&from=SNB';
+	$.ajax({
+		url:ajaxUrl,
+		dataType:'text',
+		success:function(result){
+			$("#js-snb-onroadPrice-container").html(result);
+			quikr.cars.nc.attachEventsToOnRoadPriceFiletersSNB();
+		},
+		error:function(error){
+			console.log(error);
+		}
+	});
+};
+
+quikr.cars.nc.attachEventsToOnRoadPriceFiletersSNB = function(){
+	$(".js-snb-onroadprice-list li a,#js-submit-onprice-calculator-snb").click(function(e){
+		e.preventDefault();
+		quikr.cars.nc.applyOnRoadPriceFiltersSNB(this);
+	});
+}
+
+quikr.cars.nc.cityRedirect =function(city){
+	var urlPath = document.location.pathname;
+	var urlComponentArray = urlPath.split('/');
+	var lastComponent = urlComponentArray.pop();
+	if(lastComponent == ''){
+		lastComponent = urlComponentArray.pop();
+	}
+	var urlParameters = lastComponent.split('+');
+	var currCity = urlParameters.pop();
+	if(!isNaN(currCity)){
+		currCity = urlParameters.pop();
+	}
+	var newCity = city.replace(/\b./g, function(m){ return m.toUpperCase(); });
+	newCity = newCity.replace(' ','-');
+	var url = document.location.href;
+	url = url.replace(currCity,newCity);
+	window.location.href = url;
+}
+//End on road price calculator
