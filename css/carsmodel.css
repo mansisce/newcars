@@ -558,6 +558,12 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-head
   padding-top: 10px;
   padding-left: 15px;
   padding-bottom: 10px;
+  font-size: 16px;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-header .icon-arrows_remove::before {
+  line-height: 37px;
+  font-size: 42px;
+  color: #fff;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-body {
   padding: 0;
@@ -576,6 +582,9 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
   border: 0;
   padding-right: 0;
   padding-left: 0;
+  padding-bottom: 0;
+  right: 0;
+  left: 0;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav {
   padding-right: 29px;
@@ -589,6 +598,7 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
   text-align: center;
   vertical-align: middle;
   float: none;
+  font-size: 14px;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li a {
   color: #fff;
@@ -609,10 +619,13 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .m-toggle-thumbnail {
   text-align: center;
   color: #fff;
-  padding: 17px;
+  padding: 20px;
+  padding-bottom: 15px;
+  font-size: 14px;
 }
 div.wrapper section.nc-gallery .modal .modal-dialog {
   height: 100%;
+  margin: 0;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;

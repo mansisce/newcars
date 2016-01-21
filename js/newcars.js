@@ -186,26 +186,34 @@
 					$(objOfItemToDisable).addClass("hidden");
 			} 
 
-			var _onThumbnailClick = function(){
-
-				$("#m-thumbnail-all .thumbnail").on("click",function(){
-					var clickedIndex = $(this).index();
-					console.log(clickedIndex);
-					var gallerycarouselmobile$  = $("#m-gallery-carousel");
-					   gallerycarouselmobile$.carousel(clickedIndex);
-
-				});
+			var goToCarouselItem = function( carousel$ ,pos){
+				var posInt = parseInt(pos, 10);	
+				carousel$.carousel(posInt);
 			}
 
+			var _onThumbnailClick = function(pos){
+				$("#m-thumbnail-all .thumbnail").on("click",function(){
+					var clickedIndex = $(this).index();
+					var gallerycarouselmobile$  = $("#m-gallery-carousel");
+						var test = parseInt($(this).attr("xyz")-1, 10);	
+					   gallerycarouselmobile$.carousel(test);
+				});
+			}
+			var _toggleThumbnail = function(){
+				$(".m-toggle-thumbnail").on("click", function() {
+					$(".m-gallery-thumbnail>ul,.m-gallery-thumbnail>div.tab-content").toggleClass("hidden");
+				});
+			}
 			var _onGalleryTabClick = function(){
 				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
 					onTabClick(this);
-					
+					 goToCarouselItem($("#m-gallery-carousel"),0);					
 				});
 
 				$(".nc-gallery-head ul.nav-btn>li>a").on("click",function(){
 					 changeTabClass(this);
-					onTabClick(this);			
+					onTabClick(this);	
+					goToCarouselItem($("#d-gallery-carousel"),0);
 				});
 			}
 
@@ -218,6 +226,7 @@
     		}
     		_onThumbnailClick();
 			_onGalleryTabClick();
+			_toggleThumbnail();
 			pauseCarousel();
 			return {changeTabClass,onTabClick};
 		}());
