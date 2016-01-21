@@ -541,7 +541,6 @@ div.wrapper ._imagehover {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
-  transform: scale(1.2);
 }
 div.wrapper ._figcaption figcaption {
   position: absolute;
@@ -568,16 +567,7 @@ div.wrapper section.nc-gallery {
   padding-top: 40px;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal {
-  /*display: block; */
-  /* padding: 4px; */
-  /* margin-bottom: 20px; */
-  /* line-height: 1.42857143; */
-  /* background-color: #fff; */
-  /* border: 1px solid #ddd; */
-  /* border-radius: 4px; */
-  /* -webkit-transition: border .2s ease-in-out; */
-  /* -o-transition: border .2s ease-in-out; */
-  /* transition: border .2s ease-in-out; */
+  background-color: #000;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content {
   background-color: #000;
@@ -601,6 +591,10 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-body
   right: 0;
   bottom: auto;
   left: 0;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer {
+  position: fixed;
+  bottom: 0;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail {
   border: 0;
@@ -633,13 +627,16 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .tab-content {
   padding-right: 29px;
   padding-left: 29px;
-  background-color: grey;
+  background-color: #3c3c3c;
   padding-top: 10px;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .m-toggle-thumbnail {
   text-align: center;
   color: #fff;
   padding: 17px;
+}
+div.wrapper section.nc-gallery .modal .modal-dialog {
+  height: 100%;
 }
 div.wrapper section.nc-gallery h2 {
   margin-bottom: 55px;
@@ -721,7 +718,6 @@ div.wrapper section.nc-gallery .nc-gallery-all figure > div img:hover {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
-  transform: scale(1.2);
 }
 div.wrapper section.nc-gallery .nc-gallery-all figure figcaption h2 {
   color: #fff;
@@ -745,7 +741,6 @@ div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) img {
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
-  transform: scale(1.2);
 }
 div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4) figcaption {
   position: absolute;
@@ -774,7 +769,6 @@ div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(2n) > div {
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     -o-transform: scale(1);
-    transform: scale(1);
   }
   div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(2n) > div {
     margin-right: 5px;
@@ -785,7 +779,6 @@ div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(2n) > div {
     -moz-transform: scale(1.2);
     -ms-transform: scale(1.2);
     -o-transform: scale(1.2);
-    transform: scale(1.2);
   }
   div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(8) figcaption {
     position: absolute;
@@ -913,13 +906,21 @@ div.wrapper .carousel .carousel-control .icon-next {
   background-color: #000;
 }
 div.wrapper .carousel .item .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: #3c3c3c;
   padding: 10px 15px;
+}
+div.wrapper .carousel .item .carousel-caption .carousel-caption {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
 }
 div.wrapper .carousel .item .carousel-caption h2 {
   margin: 0;
   width: 80%;
   text-align: left;
+  font-size: 14px;
+  font-family: 'ProximaNova-Regular';
 }
 @media screen and (min-width: 768px) {
   div.wrapper #d-gallery-carousel.carousel {
@@ -933,9 +934,9 @@ div.wrapper #d-gallery-carousel .item img {
   width: 100%;
 }
 div.wrapper #d-gallery-carousel .item .carousel-caption {
-  top: 0;
+  top: auto;
   right: 0;
-  bottom: auto;
+  bottom: 0;
   left: 0;
 }
 div.wrapper #d-gallery-carousel .carousel-control .icon-close {
@@ -952,7 +953,7 @@ div.wrapper #m-thumbnail-all .thumbnail,
 div.wrapper #m-thumbnail-interior .thumbnail {
   float: left;
   width: 25%;
-  background-color: grey;
+  background-color: #3c3c3c;
   border: 0;
   min-height: 100%;
   margin-bottom: 0;

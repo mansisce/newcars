@@ -1,7 +1,25 @@
+	$(".head-search").hide();
 	var quikr = quikr || {};
 	quikr.cars = quikr.cars || {};
 	quikr.cars.nc = {};
-	quikr.cars.nc.modelPage = {}
+	quikr.cars.nc.modelPage = {};
+	quikr.cars.nc.helpermodule = {};
+
+	quikr.cars.nc.helpermodule = (function(){
+
+		var removeItemFromArr = function(arrInput,removeItem){
+			console.log(arrInput+"-"+removeItem)
+			var arr;
+			arr = $.grep(arrInput, function(value) {
+			  return value != removeItem;
+			});
+			console.log(arr);
+			return arr;
+		}
+
+		return {removeItemFromArr};
+	})();
+
 	quikr.cars.nc.init = (function(){
 
 		this.MOBILE = "767";
@@ -20,6 +38,7 @@
 		$("[data-class='animate-mask']").addClass("animate-mask");
 
 		$("[data-class='animate-cta']").addClass("animate-cta");	
+
 
 		//
 	}());
@@ -112,6 +131,66 @@
 			});
 		};	
 		*/
+
+		var gallerymodule = (function(){
+
+			var alltab = function(){
+				var alltab$ = $(".nc-gallery .js-tab-all");
+				alltab$.addClass("hidden");				
+			};
+
+
+			var _getTabs = function(obj){
+				var allLi = $(obj).parent().parent();
+				var arr =  [];
+				var objAllAnchor$ = $(allLi).find("a");
+				objAllAnchor$.each(function(){					
+					var classOfTarget = $(this).attr("href");
+						classOfTarget = classOfTarget.substring(1);			
+						arr.push("."+classOfTarget);
+				});
+				return arr;
+			};
+
+			var onGalleryTabClick = function(){
+				var objOfTabClicked = "";
+
+				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
+					
+					var classOfTarget = $(this).attr("href");
+					classOfTarget = classOfTarget.substring(1);			
+
+					var objOfItem$ = $("."+classOfTarget);
+					var arrOfTab = _getTabs(this);
+					var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab,"."+classOfTarget);
+
+					var objOfItemToDisable = arrOfClassToHide.toString();
+					console.log(objOfItemToDisable);
+					objOfItem$.removeClass("hidden");
+					$(objOfItemToDisable).addClass("hidden");
+					
+				});
+			}
+			var pauseCarousel = function(){
+			   $('.carousel').each(function(){
+			        $(this).carousel({
+			            interval: false
+			        });
+			    });
+    		}
+			onGalleryTabClick();
+			pauseCarousel();
+			return {};
+		}());
+
+		var desktopAddGalleryCarousal = function(){
+			var carousalhtml$ = $("#m-gallery-carousel"); 
+			if(carousalhtml$){
+				$( "#d-gallery-carousel" ).append( carousalhtml$.html() );
+				$("#d-gallery-carousel").find(".carousel-control").attr("href","#d-gallery-carousel");
+			}
+		};
+
 		var ongallerythumbclick = function(){
 			//can i provide the object to show with some animation effect.
 			/*
@@ -120,19 +199,25 @@
 			});
 			*/
 			$("figure").on("click", function(){	
+
+				//$("#gallery-carousel-mobile").hide();
+				//$('#gallerymodal').modal('show');
+				
+
+								
 				if(quikr.cars.nc.isMobile) {
-					$("#gallery-carousel-mobile").hide();
 					$('#gallerymodal').modal('show');
 				}
 				else{
 					$("#d-gallery-carousel").removeClass("hidden",400);
-					//$("#d-gallery-carousel").show("400");
 				}
+				
 			});			
 		};
 		
 		var onscroll = function(){				
 		}
+		desktopAddGalleryCarousal();
 		onscroll();
 		ongallerythumbclick();
 
@@ -302,9 +387,38 @@ quikr.cars.nc.attachEventsOnModelPage = function(e){
 	$(".js-desktop-images figure").click(quikr.cars.nc.corouselLazyLoad);
 }
 
+quikr.cars.nc.getSpecificSNBPage = function(){
+	var url = document.location.href+'?ajax=true&page='+quikr.cars.nc.page;
+	$.ajax({
+		url:url,
+		success:function(result){
+			$('.js-nc-snbcard-column').append(result['searchResults']);
+			quikr.cars.nc.scrollRunning=0;
+			quikr.cars.nc.page++;
+			$('.lazy').lazyload();
+		},
+		error:function(error){
+			console.log(error);
+		}
+	});
+}
+
+quikr.cars.nc.attachEventsToSNBPage = function(e){
+	quikr.cars.nc.page = 1;
+	quikr.cars.nc.scrollRunning=0;
+	 $(document).scroll(function(e){
+		if(quikr.cars.nc.scrollRunning==0){
+		  if(($(this).scrollTop() / $(this).height())*100 > 75) {
+			quikr.cars.scrollRunning=1;
+			quikr.cars.nc.getSpecificSNBPage();
+		  }
+		}
+	 });
+}
+
 $(document).ready(function(){
-	$(".head-search").hide();
 	quikr.cars.nc.attachEventsToFilters();
+	quikr.cars.nc.attachEventsToSNBPage();
 	quikr.cars.nc.attachEventsOnModelPage();
 	$(".lazy").lazyload({
 		threshold:400
@@ -372,7 +486,7 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 	};
 	var attachOnRoadCalculator = function(){
 		quikr.cars.nc.view.inputFields.animatelabel();
-		$(".js-snb-onroadprice-list li a,#js-submit-onprice-calculator-snb").on("click",function(e){
+		$(".js-snb-onroadprice-list li a,#js-submit-onprice-calculator-snb,#js-snb-another-button").on("click",function(e){
 			e.preventDefault();
 			_onRoadCalculatorFromSnb(this);
 		});
@@ -393,6 +507,16 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 			$(this).attr("href",url);
 			_onRoadCalculatorFromOnRoadPage(this);
 		})
+		$("#js-result-city-list-snb li a").on("click",function(e){
+			e.preventDefault();
+			var url=$("#js-result-city-list-snb").attr("common-href");
+			var city=$(this).html();
+			var replaceCity=url.split("+");
+			replaceCity[replaceCity.length-1]=city
+			url=replaceCity.join("+");
+			$(this).attr("href",url);
+			_onRoadCalculatorFromSnb(this);
+		})
 
 		$("#js-submit-onprice-calculator").on("click",function(e){
 			e.preventDefault();
@@ -403,6 +527,8 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 			url=replaceCity.join("+");
 			window.location.href=url;
 		})
+
+
 
 		$("body").on('keyup',".popular-select-input",function(event){
 		    var searchKey = jQuery(this).val().toLowerCase();
@@ -493,6 +619,8 @@ quikr.cars.nc.attachEventsToOnRoadPriceFiletersSNB = function(){
 }
 
 quikr.cars.nc.cityRedirect =function(city){
+	if(city == 'www')
+		city = 'All India';
 	var urlPath = document.location.pathname;
 	var urlComponentArray = urlPath.split('/');
 	var lastComponent = urlComponentArray.pop();
