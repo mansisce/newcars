@@ -131,6 +131,17 @@
 			});
 		};	
 		*/
+		var variantModule = (function(){
+
+			var _onTabClick = function(){
+				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
+					 gallerymodule.changeTabClass(this);
+					 gallerymodule.onTabClick(this);			
+				});
+			}
+
+			_onTabClick();
+		})();
 
 		var gallerymodule = (function(){
 
@@ -152,25 +163,41 @@
 				return arr;
 			};
 
-			var onGalleryTabClick = function(){
-				var objOfTabClicked = "";
+			var changeTabClass = function(obj){
+				//$(obj).addClass("btn-filled");
+				$(obj).parent().parent().find("a").removeClass("btn-filled").addClass("btn-border");
+				$(obj).removeClass("btn-border").addClass("btn-filled");
+				//_getTabs(obj);
+			}
 
-				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
-					
-					var classOfTarget = $(this).attr("href");
+			var onTabClick = function(objNavTab){
+
+					var classOfTarget = $(objNavTab).attr("href");
 					classOfTarget = classOfTarget.substring(1);			
+					console.log(classOfTarget);
 
 					var objOfItem$ = $("."+classOfTarget);
-					var arrOfTab = _getTabs(this);
+					var arrOfTab = _getTabs(objNavTab);
 					var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab,"."+classOfTarget);
 
 					var objOfItemToDisable = arrOfClassToHide.toString();
 					console.log(objOfItemToDisable);
 					objOfItem$.removeClass("hidden");
 					$(objOfItemToDisable).addClass("hidden");
+			} 
+
+			var _onGalleryTabClick = function(){
+				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
+					onTabClick(this);
 					
 				});
+
+				$(".nc-gallery-head ul.nav-btn>li>a").on("click",function(){
+					 changeTabClass(this);
+					onTabClick(this);			
+				});
 			}
+
 			var pauseCarousel = function(){
 			   $('.carousel').each(function(){
 			        $(this).carousel({
@@ -178,9 +205,9 @@
 			        });
 			    });
     		}
-			onGalleryTabClick();
+			_onGalleryTabClick();
 			pauseCarousel();
-			return {};
+			return {changeTabClass,onTabClick};
 		}());
 
 		var desktopAddGalleryCarousal = function(){
@@ -418,8 +445,8 @@ quikr.cars.nc.attachEventsToSNBPage = function(e){
 
 $(document).ready(function(){
 	quikr.cars.nc.attachEventsToFilters();
-	quikr.cars.nc.attachEventsToSNBPage();
-	quikr.cars.nc.attachEventsOnModelPage();
+	//quikr.cars.nc.attachEventsToSNBPage();
+	//quikr.cars.nc.attachEventsOnModelPage();
 	$(".lazy").lazyload({
 		threshold:400
 	});
@@ -556,7 +583,7 @@ quikr.cars.nc.model.onroadcalculator = (function(){
 	attachOnRoadCalculator();
 }());
 //on road price calculator Page
-
+/*
 quikr.cars.nc.applyOnRoadPriceFilters = function(element){
 	var url = $(element).attr('href');
 	var ajaxUrl=url+'/?ajax=true';
@@ -617,6 +644,8 @@ quikr.cars.nc.attachEventsToOnRoadPriceFiletersSNB = function(){
 		quikr.cars.nc.applyOnRoadPriceFiltersSNB(this);
 	});
 }
+
+*/
 
 quikr.cars.nc.cityRedirect =function(city){
 	if(city == 'www')
