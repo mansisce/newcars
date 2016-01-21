@@ -186,6 +186,17 @@
 					$(objOfItemToDisable).addClass("hidden");
 			} 
 
+			var _onThumbnailClick = function(){
+
+				$("#m-thumbnail-all .thumbnail").on("click",function(){
+					var clickedIndex = $(this).index();
+					console.log(clickedIndex);
+					var gallerycarouselmobile$  = $("#m-gallery-carousel");
+					   gallerycarouselmobile$.carousel(clickedIndex);
+
+				});
+			}
+
 			var _onGalleryTabClick = function(){
 				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
 					onTabClick(this);
@@ -205,6 +216,7 @@
 			        });
 			    });
     		}
+    		_onThumbnailClick();
 			_onGalleryTabClick();
 			pauseCarousel();
 			return {changeTabClass,onTabClick};
