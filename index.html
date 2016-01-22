@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<div class="wrapper animate-in">
+<div class="wrapper animate-in nc-modelPage">
 	<section class="nc-heading">
 		<div class="container">
 			<nav class="row nc-nav js-nc-nav">
@@ -25,14 +25,14 @@
 					<li class="col-sm-2"><a  href="#nc-variants" id="ncvariantid">VARIANTS</a></li>
 					<li class="col-sm-2"><a href="#nc-gallery" >GALLERY</a></li>
 				</ul>
-				<div class="col-xs-8 visible-xs">
+				<div class="col-xs-8 visible-xs nc-m-menu">
 					<select class="frm-select">
-					  <option id="">Overview</option>
-					  <option id="">Colors</option>
-					  <option id="">Highest Rated</option>
-					  <option id="">Latest Model</option>
-					  <option id="">Least Driven</option>      
+					  	<option valus="">Overview</option>
+						<option value="nc-colors">Colors</option>
+					  	<option value="nc-variants">Variant</option>
+						<option value="nc-gallery">Gallery</option>
 					</select>
+					<i class="icon-arrows_down"></i>					
 				 </div>	
 				
 				<div class="nc-share col-xs-4">
@@ -185,12 +185,14 @@
 										<li class="col-sm-3"><a class="btn btn-border" href="#js-tab-variant-diesel">Diesel</a></li>
 										<li class="col-sm-3"><a class="btn btn-border" href="#js-tab-variant-cng">CNG</a></li>
 								</ul>
-						<div class="visible-xs pull-right">
+						<div class="visible-xs pull-right nc-m-menu">
 							<select class="frm-select">
-							  <option>Petrol</option>
-							  <option>Diesel</option>
-							  <option>CNG</option>
+							  <option value="js-tab-variant-all">All</option>								
+							  <option value="js-tab-variant-petrol">Petrol</option>
+							  <option value="js-tab-variant-diesel">Diesel</option>
+							  <option value="js-tab-variant-cng">CNG</option>
 							</select>
+							<i class="icon-arrows_down"></i>							
 						 </div>										
 					</div>
 				</div>
@@ -1220,7 +1222,8 @@
 								</div><!-- closes the carousal div -->							
 					</div>
 				  </div> <!-- /.tab-content -->
-				  <div class="m-toggle-thumbnail">Hide Thumbnails</div>				  
+				  <div class="m-toggle-thumbnail">Hide Thumbnails&nbsp;<i class="icon-arrows_down"></i></div>				  
+				  <div class="m-toggle-thumbnail hiddenShowThumb">Show Thumbnails&nbsp;<i class="icon-arrows_up"></i></div>				  
 		      </div> <!-- /.modal-footer -->
 		    </div>
 			</div>
@@ -1241,13 +1244,14 @@
 							<li role="presentation" class="col-xs-3"><a class="btn btn-border"  href="#js-tab-interior">Interior</a></li>
 							<li role="presentation" class="col-xs-3"><a class="btn btn-border"  href="#js-tab-video">Videos</a></li>		
 						</ul>
-						<div class="visible-xs pull-right">
+						<div class="visible-xs pull-right nc-m-menu">
 							<select class="frm-select">
-							  <option>All</option>
-							  <option>Exterior</option>
-							  <option>Interior</option>
-							  <option>Videos</option>								
+							  <option value="js-tab-all">All</option>
+							  <option value="js-tab-exterior">Exterior</option>
+							  <option value="js-tab-interior">Interior</option>
+							  <option value="js-tab-video">Videos</option>	
 							</select>
+							<i class="icon-arrows_down"></i>							
 						 </div>								
 					</div>
 				</div>	

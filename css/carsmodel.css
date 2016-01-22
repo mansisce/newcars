@@ -97,6 +97,9 @@ div.wrapper section.nc-mask h1 .nc-showroom {
     font-size: 24px;
   }
 }
+div.wrapper div.nc-cta {
+  padding-top: 60px;
+}
 div.wrapper div.nc-cta h3 {
   margin-top: 10px;
   font-family: 'ProximaNova-Regular';
@@ -223,9 +226,6 @@ div.wrapper nav.nc-nav {
   opacity: 0;
   -khtml-opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
-}
-div.wrapper nav.nc-nav select.frm-select {
-  border-bottom: 1px solid #ddd;
 }
 div.wrapper nav.nc-nav ul {
   margin-bottom: 0;
@@ -577,6 +577,11 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-body
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer {
   position: fixed;
   bottom: 0;
+  -webkit-transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -ms-transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail {
   border: 0;
@@ -622,6 +627,27 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
   padding: 20px;
   padding-bottom: 15px;
   font-size: 14px;
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .m-toggle-thumbnail.showThumb {
+  -webkit-transform: translate3d(0px, 0, 0px);
+  -moz-transform: translate3d(0px, 0, 0px);
+  -ms-transform: translate3d(0px, 0, 0px);
+  -o-transform: translate3d(0px, 0, 0px);
+  transform: translate3d(0px, 0, 0px);
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .m-toggle-thumbnail.hiddenShowThumb {
+  -webkit-transform: translate3d(0px, 50px, 0px);
+  -moz-transform: translate3d(0px, 50px, 0px);
+  -ms-transform: translate3d(0px, 50px, 0px);
+  -o-transform: translate3d(0px, 50px, 0px);
+  transform: translate3d(0px, 50px, 0px);
+}
+div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.hideThumbCarousel {
+  -webkit-transform: translate3d(0px, 200px, 0px);
+  -moz-transform: translate3d(0px, 200px, 0px);
+  -ms-transform: translate3d(0px, 200px, 0px);
+  -o-transform: translate3d(0px, 200px, 0px);
+  transform: translate3d(0px, 200px, 0px);
 }
 div.wrapper section.nc-gallery .modal .modal-dialog {
   height: 100%;
@@ -944,6 +970,7 @@ div.wrapper #d-variant-carousel .carousel-control.top .icon-arrows_remove {
   display: inline-block;
 }
 div.wrapper .frm-select {
+  -webkit-appearance: none;
   background: none;
   font-size: 0.85em;
   border: 0;
@@ -979,6 +1006,19 @@ div.wrapper .txt-focus .uline-ph {
   top: 0;
   font-size: 0.7em;
   color: #008bcf;
+}
+div.wrapper.nc-modelPage .nc-m-menu .icon-arrows_down {
+  position: relative;
+  top: 4px;
+  left: -15px;
+  color: #3c3c3c;
+}
+div.wrapper.nc-modelPage select.frm-select {
+  border-bottom: 1px solid #ddd;
+  padding-right: 16px;
+}
+div.wrapper.nc-modelPage select.frm-select:hover {
+  cursor: pointer;
 }
 /* closes the page level div or the page container */
 div.roadPriceModal .modal-dialog {

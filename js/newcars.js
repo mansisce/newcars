@@ -17,11 +17,26 @@
 			return arr;
 		}
 
-		return {removeItemFromArr};
+		var getAllSelectVal = function(selector){
+			var opt_vals = [];
+			$(selector+">option").each(function() {
+			   opt_vals.push("."+$(this).val());
+			});
+
+			return opt_vals;
+		};
+
+		var filterForSection = function(arrOfClassToHide, keyClassToHide){
+			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfClassToHide,"."+keyClassToHide);
+			var objOfItemToDisable = arrOfClassToHide.toString();
+			$("."+keyClassToHide).removeClass("hidden");
+			$(objOfItemToDisable).addClass("hidden");			
+		}
+
+		return {removeItemFromArr,getAllSelectVal,filterForSection};
 	})();
 
 	quikr.cars.nc.init = (function(){
-
 		this.MOBILE = "767";
 		this.TABLET = "991";
 		this.DESKTOP = "1199";
@@ -37,9 +52,7 @@
 
 		$("[data-class='animate-mask']").addClass("animate-mask");
 
-		$("[data-class='animate-cta']").addClass("animate-cta");	
-
-
+		$("[data-class='animate-cta']").addClass("animate-cta");
 		//
 	}());
 	quikr.cars.nc.view = (function(){		
@@ -62,17 +75,23 @@
 		        }, 1000);
 			};
 
-
-			var onnavclick =function(){				
+			var onnavclick =function(){
+				//attach event for mobile and desktop
 				$("nav.js-nc-nav li>a").on("click", function(){
 						var offset = $(".nc-heading").height();
-						console.log("offset is"+offset);
 						var classOfTarget = $(this).attr("href");
 						classOfTarget = classOfTarget.substring(1);
 						var target = $("."+classOfTarget);
 						_scrollToSection(target,-offset);
 						return false;
 				});	
+				$("nav.js-nc-nav select").on("change", function(){
+						var offset = $(".nc-heading").height();
+						var classOfTarget = $(this).val();
+						var target = $("."+classOfTarget);
+						_scrollToSection(target,-offset);
+						return false;
+				});					
 			}
 			var _getwindowpos = function(){
 				var pos = $(window).scrollTop();
@@ -132,14 +151,20 @@
 		};	
 		*/
 		var variantModule = (function(){
-
 			var _onTabClick = function(){
 				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
 					 gallerymodule.changeTabClass(this);
 					 gallerymodule.onTabClick(this);			
 				});
+				$(".nc-variants select").on("change",function(){
+					var classOfTarget = $(this).val();
+					var objOfItem$ = $("."+classOfTarget);
+					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-variants select");
+					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
+				});				
+				/* attach for mobile as well. */
+				//.nc-m-menu 
 			}
-
 			_onTabClick();
 		})();
 
@@ -172,19 +197,21 @@
 
 			var onTabClick = function(objNavTab){
 
-					var classOfTarget = $(objNavTab).attr("href");
-					classOfTarget = classOfTarget.substring(1);			
-					console.log(classOfTarget);
+				var classOfTarget = $(objNavTab).attr("href");
+				classOfTarget = classOfTarget.substring(1);			
+				console.log(classOfTarget);
 
-					var objOfItem$ = $("."+classOfTarget);
-					var arrOfTab = _getTabs(objNavTab);
-					var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab,"."+classOfTarget);
+				var objOfItem$ = $("."+classOfTarget);
+				var arrOfTab = _getTabs(objNavTab);
+				var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab,"."+classOfTarget);
 
-					var objOfItemToDisable = arrOfClassToHide.toString();
-					console.log(objOfItemToDisable);
-					objOfItem$.removeClass("hidden");
-					$(objOfItemToDisable).addClass("hidden");
+				var objOfItemToDisable = arrOfClassToHide.toString();
+				console.log(objOfItemToDisable);
+				objOfItem$.removeClass("hidden");
+				$(objOfItemToDisable).addClass("hidden");
+
 			} 
+
 
 			var goToCarouselItem = function( carousel$ ,pos){
 				var posInt = parseInt(pos, 10);	
@@ -201,7 +228,15 @@
 			}
 			var _toggleThumbnail = function(){
 				$(".m-toggle-thumbnail").on("click", function() {
-					$(".m-gallery-thumbnail>ul,.m-gallery-thumbnail>div.tab-content").toggleClass("hidden");
+					$(".modal-footer").toggleClass("hideThumbCarousel");
+
+					if($(".modal-footer").hasClass("hideThumbCarousel")) {
+						$(this).addClass("showThumb");
+					}
+					else{
+						$(this).removeClass("showThumb");
+					}
+					//$(".m-gallery-thumbnail>ul,.m-gallery-thumbnail>div.tab-content").toggleClass("hidden").toggleClass("ani-thumbnail");
 				});
 			}
 			var _onGalleryTabClick = function(){
@@ -215,6 +250,13 @@
 					onTabClick(this);	
 					goToCarouselItem($("#d-gallery-carousel"),0);
 				});
+				$(".nc-gallery select").on("change",function(){
+					var classOfTarget = $(this).val();
+					var objOfItem$ = $("."+classOfTarget);
+					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-gallery select");
+					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
+				});
+
 			}
 
 			var pauseCarousel = function(){
@@ -376,10 +418,9 @@
 	}());
 	
 
-	quikr.cars.nc.applyFilter = function(element){
-		var url = $(element).attr('href');
-		var ajaxUrl=$(element).attr('href')+'/?ajax=true';
-		//var url ="http://www.quikr.com/cars-bikes/new+Ashok-Leyland+Mumbai+17/?ajax=true";
+	quikr.cars.nc.applyFilter = function(element,url){
+		var url = url || $(element).attr('href');
+		var ajaxUrl=url+'/?ajax=true';
 		$.ajax({
 			url:ajaxUrl,
 			dataType:'json',
@@ -426,6 +467,37 @@ quikr.cars.nc.attachEventsToFilters = function(){
 	e.preventDefault();
 	quikr.cars.nc.applyFilter(this);
 	});
+
+	$('.min-max-container .max-values li').click(function(e){
+		var minPrice = $('#newCarsSNBFilterMinPrice').val();
+		var maPrice =  $(this).data('val');
+		var price = minPrice+'_'+maPrice;
+		var urlPath = document.location.pathname;
+		var urlComponentArray = urlPath.split('/');
+		var lastComponent = urlComponentArray.pop();
+		if(lastComponent == ''){
+			lastComponent = urlComponentArray.pop();
+		}
+		var urlParameters = lastComponent.split('+');
+		var attributeArray = urlParameters.pop().split('');
+		attributeArray.push('3');
+		attributeArray = attributeArray.sort();
+		var newUrlParameters = ['new'];
+		for(var i=0;i<attributeArray.length;i++){
+			if(attributeArray[i] == '3'){
+				newUrlParameters.push(price);
+			}
+			else if(attributeArray[i] < '3'){
+				newUrlParameters.push(urlParameters[i+1]);
+			}
+			else{
+				newUrlParameters.push(urlParameters[i]);
+			}
+		}
+		newUrlParameters.push(attributeArray.join(''));
+		var url = 'http://www.quikr.com/cars-bikes/'+newUrlParameters.join('+');
+		quikr.cars.nc.applyFilter(this,url);
+	});
 	$(".lazy").lazyload({
 		threshold:400
 	});
@@ -466,8 +538,8 @@ quikr.cars.nc.attachEventsToSNBPage = function(e){
 
 $(document).ready(function(){
 	quikr.cars.nc.attachEventsToFilters();
-	//quikr.cars.nc.attachEventsToSNBPage();
-	//quikr.cars.nc.attachEventsOnModelPage();
+	quikr.cars.nc.attachEventsToSNBPage();
+	quikr.cars.nc.attachEventsOnModelPage();
 	$(".lazy").lazyload({
 		threshold:400
 	});
