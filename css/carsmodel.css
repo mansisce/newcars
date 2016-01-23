@@ -97,9 +97,6 @@ div.wrapper section.nc-mask h1 .nc-showroom {
     font-size: 24px;
   }
 }
-div.wrapper div.nc-cta {
-  padding-top: 60px;
-}
 div.wrapper div.nc-cta h3 {
   margin-top: 10px;
   font-family: 'ProximaNova-Regular';
@@ -183,6 +180,11 @@ div.wrapper div.nc-cta.animate-cta a {
   -khtml-opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
 }
+@media (min-width: 992px) {
+  div.wrapper div.nc-cta {
+    padding-top: 60px;
+  }
+}
 div.wrapper section.nc-heading.navbar-fixed {
   position: fixed;
   top: 0;
@@ -260,7 +262,7 @@ div.wrapper.animate-in nav.nc-nav {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
 }
 div.wrapper section.nc-variants {
-  padding: 30px 10px;
+  padding: 30px 15px;
   -webkit-box-shadow: 0 -3px 8px #eee;
   -moz-box-shadow: 0 -3px 8px #eee;
   box-shadow: 0 -3px 8px #eee;
@@ -292,6 +294,8 @@ div.wrapper section.nc-variants > div:first-child {
   -khtml-opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
   /*	close */
+  padding-right: 0;
+  padding-left: 0;
 }
 div.wrapper section.nc-variants > div:first-child.animate-variants {
   -webkit-transform: translate3d(0px, 0px, 0px);
@@ -304,6 +308,12 @@ div.wrapper section.nc-variants > div:first-child.animate-variants {
   opacity: 1;
   -khtml-opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@opacity)";
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-variants > div:first-child {
+    padding-right: 15px;
+    padding-left: 30px;
+  }
 }
 div.wrapper section.nc-variants .nc-desc {
   padding: 15px;
@@ -371,16 +381,31 @@ div.wrapper section.nc-variants div.nc-desc {
   margin-bottom: 30px;
   padding-top: 25px;
   padding-bottom: 25px;
+  max-height: 230px;
 }
 div.wrapper section.nc-variants div.nc-desc .nc-image {
   margin-bottom: 15px;
+  display: none;
 }
 div.wrapper section.nc-variants div.nc-desc .nc-price h2 {
   font-size: 30px;
+  color: #3c3c3c;
+}
+div.wrapper section.nc-variants div.nc-desc button {
+  margin-top: 15px;
 }
 @media (min-width: 768px) {
   div.wrapper section.nc-variants div.nc-desc {
     border: 0;
+  }
+}
+div.wrapper section.nc-variants div.nc-desc:hover {
+  border: 1px solid #ddd;
+  border-bottom-width: 2px;
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-variants {
+    padding: 30px 10px;
   }
 }
 div.wrapper section.nc-colors {
@@ -438,6 +463,8 @@ div.wrapper section.nc-colors .nc-colorname {
 }
 div.wrapper section.nc-colors .nc-colorname span {
   display: block;
+  text-transform: uppercase;
+  padding-top: 21px;
 }
 div.wrapper section.nc-colors li {
   margin-bottom: 24px;
@@ -541,6 +568,11 @@ div.wrapper section.nc-gallery {
   box-shadow: 0 -3px 8px #eee;
   margin-bottom: 100px;
   padding-top: 40px;
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-gallery .nc-gallery-head {
+    padding-left: 30px;
+  }
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal {
   background-color: #000;
@@ -1019,6 +1051,10 @@ div.wrapper.nc-modelPage select.frm-select {
 }
 div.wrapper.nc-modelPage select.frm-select:hover {
   cursor: pointer;
+}
+div.wrapper.nc-modelPage select.frm-select:focus,
+div.wrapper.nc-modelPage select.frm-select:active {
+  outline: 0;
 }
 /* closes the page level div or the page container */
 div.roadPriceModal .modal-dialog {
