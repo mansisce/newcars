@@ -7,8 +7,7 @@
 	quikr.cars.nc.contentTabModule = {};
 
 	quikr.cars.nc.contentTabModule = (function(){
-
-		var getContentClasses = function(obj){			
+		var getContentClasses = function(obj){	
 			var allLi = $(obj).parent().parent();
 			var arr =  [];
 			var arrparent = [];
@@ -24,30 +23,76 @@
 		};
 
 		var hideOtherTabContent = function(arrClassNamesWithDot,classNameWithDot){
-			$(arrClassNamesWithDot).addClass("hidden");
+			//remove 
+
+			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrClassNamesWithDot,classNameWithDot);
+			var objOfItemToDisable = arrOfClassToHide.toString();
+
+			$(objOfItemToDisable).addClass("hidden");
 			$(classNameWithDot).removeClass("hidden");
 		};
 
-		var addOpacityForAnimation = function(){
-
-			var arrOfTab = getContentClasses(this);
-			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab[0],"."+classOfTarget);
+		var addOpacityOnTabContentChange = function(arrParentClassNamesWithDot,parentClassNameWithDot){
+			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrParentClassNamesWithDot,parentClassNameWithDot);
 			var objOfItemToDisable = arrOfClassToHide.toString();
 
-		}
+			$(objOfItemToDisable).css("opacity","0");
+			$(parentClassNameWithDot).css("opacity","1");
+		};
 
+		
+		var killItem = function(objSelectedTab){			
+			//if(objSelectedTab).
+			// on click of the tab if the item click of the carousel has 
+			//make the item child as hidden and also the corresponding indicators.
+			// if the childrens of item do not have the class objSelectedTab.
+			var itemChild = $("carouselid carouselinner").find("item").addClass("hidden");
+			var itemobj$ = $("carouselid carouselinner").find("item");
+			itemobj$.each(function(){				
+				var obj = $(this).find("myclassname").length;
 
-	});
+				if(length<=0){
+					hide;
+				}
+			});
+		};
+
+		var contentTabTogglingForDesktop = function(objClickedTab){
+			var classNameWithDot = $(objClickedTab).attr("href");
+			classNameWithDot = "."+classNameWithDot.substring(1);	
+			parentClassNameWithDot = classNameWithDot+"-parent";
+
+			var objArr = getContentClasses(objClickedTab);
+			hideOtherTabContent(objArr.arr,classNameWithDot);	
+			addOpacityOnTabContentChange(objArr.arrparent,parentClassNameWithDot);
+		};	
+		var contentTabTogglingForMobile = function(objClickedTab){
+			var objArr = getContentClasses(objClickedTab);
+			hideOtherTabContent(objArr.arr,classNameWithDot);	
+			addOpacityOnTabContentChange(objArr.arrparent,classNameWithDot);
+		};
+
+		$(".item>div").not(".js-tabAll-parent").css("opacity",0);
+
+		return {contentTabTogglingForDesktop,contentTabTogglingForMobile};
+	})();
 
 	quikr.cars.nc.helpermodule = (function(){
 
 		var removeItemFromArr = function(arrInput,removeItem){
-			console.log(arrInput+"-"+removeItem)
-			var arr;
+			var arr = [];
+
+			/*
 			arr = $.grep(arrInput, function(value) {
 			  return value != removeItem;
 			});
-			console.log(arr);
+			*/
+			$.each(arrInput,function(i,value){
+				if(value != removeItem) {
+					arr.push(value);
+				}
+			});
+
 			return arr;
 		}
 
@@ -118,7 +163,7 @@
 						var target = $("."+classOfTarget);
 						_scrollToSection(target,-offset);
 						return false;
-				});	
+				});
 				$("nav.js-nc-nav select").on("change", function(){
 						var offset = $(".nc-heading").height();
 						var classOfTarget = $(this).val();
@@ -139,7 +184,6 @@
 						var ctaPricePos = $(".nc-cta").offset().top+100;
 
 						var topOfWindow = _getwindowpos();
-						var ctaPriceButton = $("section.nc-heading .nc-cta-price");
 
 						if (headerNavPos < topOfWindow) {
 							$(".nc-heading").addClass("navbar-fixed");
@@ -148,14 +192,6 @@
 						else {
 							$(".nc-share").removeClass("hidden");
 							$(".nc-heading").removeClass("navbar-fixed").addClass("");
-						}
-
-						if( ctaPricePos < topOfWindow ){
-							ctaPriceButton.removeClass("hidden");														
-						}
-						else
-						{
-							ctaPriceButton.addClass("hidden");							
 						}
 
 						var headernav = $(".nc-heading");
@@ -188,6 +224,8 @@
 
 			var _onTabClick = function(){
 				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
+
+					/*
 					 gallerymodule.changeTabClass(this);
 					 gallerymodule.onTabClick(this);
 
@@ -201,21 +239,32 @@
 					$(objOfItemToDisable).css("opacity","0");
 
 					objOfItem1.css("opacity","1");
+					*/
+
+					quikr.cars.nc.contentTabModule.contentTabTogglingForDesktop(this);
 
 				});
 				$(".nc-variants select").on("change",function(){
-
 					var classOfTarget = $(this).val();
+					var parentClass = classOfTarget+'-parent';
 					var objOfItem$ = $("."+classOfTarget);
 					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-variants select");
 					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
+					$(".js-mobile-page-variants .item ."+parentClass+":not(.active) ."+classOfTarget).addClass('hidden');
 				});				
 				/* attach for mobile as well. */
 				//.nc-m-menu 
 			}
 
+			/*
+			$('#js-variant-show').on('click',function(){
+				var classOfTarget = $(".nc-variants select").val();
+				var parentClass = classOfTarget+'-parent';
+				$(".js-mobile-page-variants .item ."+parentClass+":not(.active)").first().addClass('active');
+				$(".js-mobile-page-variants .item .active ."+classOfTarget).removeClass('hidden');
+			});
+
 			var contentTabToggling = function(){
-				/*
 				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
 					var classOfTarget = $(this).attr("href");
 					classOfTarget = classOfTarget.substring(1);			
@@ -224,9 +273,8 @@
 					hideOtherTabContent();
 					addOpacityForAnimation();
 				}
-				*/
-			}			
-
+			}
+			*/
 
 			var hideCarousel = function(){
 				var itemAll = $(".nc-variants #d-variant-carousel .nc-desc.js-tabAll");
@@ -235,11 +283,17 @@
 					$("#d-variant-carousel .carousel-indicators").addClass("hidden");
 					$("#d-variant-carousel .carousel-control").addClass("hidden");					
 				}
-				//if($(".nc-variants .nc-desc").length)
-
-
-
 			}
+
+			var mobileAddModelPageVariants = function(){
+				var carousalhtml$ = $(".js-desktop-page-variants");
+				if(carousalhtml$){
+					$( ".js-mobile-page-variants" ).prepend( carousalhtml$.html());
+					$(".js-mobile-page-variants .item:not(.active) .js-tabAll").addClass('hidden');
+					$(".js-mobile-page-variants .item.active").removeClass('active').children().addClass('active');
+				}
+			};
+			mobileAddModelPageVariants();
 			hideCarousel();
 			_onTabClick();
 		})();
@@ -283,8 +337,7 @@
 				objOfItem$.removeClass("hidden");
 				$(objOfItemToDisable).addClass("hidden");
 
-			} 
-
+			}
 
 			var goToCarouselItem = function( carousel$ ,pos){
 				var posInt = parseInt(pos, 10);	
@@ -293,10 +346,9 @@
 
 			var _onThumbnailClick = function(pos){
 				$("#m-thumbnail-all .thumbnail").on("click",function(){
-					var clickedIndex = $(this).index();
 					var gallerycarouselmobile$  = $("#m-gallery-carousel");
-						var test = parseInt($(this).attr("xyz")-1, 10);	
-					   gallerycarouselmobile$.carousel(test);
+						var topCarouselSlideTo = $(this).parent().attr("data-slideto")-1;
+						goToCarouselItem(gallerycarouselmobile$,topCarouselSlideTo);
 				});
 			}
 			var _toggleThumbnail = function(){
@@ -315,9 +367,10 @@
 			var _onGalleryTabClick = function(){
 				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
 					onTabClick(this);
-					 goToCarouselItem($("#m-gallery-carousel"),0);					
-				});
+					 goToCarouselItem($("#m-gallery-carousel"),0);	
+					 goToCarouselItem($(".m-gallery-thumbnail"),0);		
 
+				});
 				$(".nc-gallery-head ul.nav-btn>li>a").on("click",function(){
 					 changeTabClass(this);
 					onTabClick(this);	
@@ -329,62 +382,47 @@
 					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-gallery select");
 					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
 				});
-
+			}
+			var desktopAddGalleryCarousal = function(){
+				var carousalhtml$ = $("#m-gallery-carousel"); 
+				if(carousalhtml$){
+					$( "#d-gallery-carousel" ).append( carousalhtml$.html() );
+					$("#d-gallery-carousel").find(".carousel-control").attr("href","#d-gallery-carousel");
+				}
 			}
 
-			/*
+			var ongallerythumbclick = function(){
+				$("figure").on("click", function(){			
+					var dataslideto = $(this).attr("data-slideto")-1;
+					if(quikr.cars.nc.isMobile) {
+						$('#gallerymodal').modal('show');
+						console.log("sdfsdfdsfds sdfds dsfd")
+						goToCarouselItem($("#m-gallery-carousel"),dataslideto);
+					}
+					else{
+						$("#d-gallery-carousel").removeClass("hidden",400);
+						goToCarouselItem($("#d-gallery-carousel"),dataslideto);
+					}
+				
+				});			
+			}
+			
 			var pauseCarousel = function(){
-			   $('.carousel').each(function(){
+			   $('#d-gallery-carousel.carousel,#m-gallery-carousel.carousel,#m-thumbnail-all.carousel').each(function(){
 			        $(this).carousel({
 			            interval: false
 			        });
 			    });
-    		}
-    		*/
+			}
+    		
     		_onThumbnailClick();
 			_onGalleryTabClick();
 			_toggleThumbnail();
-			//pauseCarousel();
+			desktopAddGalleryCarousal();
+			ongallerythumbclick();			
+			pauseCarousel();
 			return {changeTabClass,onTabClick};
 		}());
-
-		var desktopAddGalleryCarousal = function(){
-			var carousalhtml$ = $("#m-gallery-carousel"); 
-			if(carousalhtml$){
-				$( "#d-gallery-carousel" ).append( carousalhtml$.html() );
-				$("#d-gallery-carousel").find(".carousel-control").attr("href","#d-gallery-carousel");
-			}
-		};
-
-		var ongallerythumbclick = function(){
-			//can i provide the object to show with some animation effect.
-			/*
-			$("figure").on("click", function(){
-				$(".carousel").show("400");				
-			});
-			*/
-			$("figure").on("click", function(){	
-
-				//$("#gallery-carousel-mobile").hide();
-				//$('#gallerymodal').modal('show');
-				
-
-								
-				if(quikr.cars.nc.isMobile) {
-					$('#gallerymodal').modal('show');
-				}
-				else{
-					$("#d-gallery-carousel").removeClass("hidden",400);
-				}
-				
-			});			
-		};
-		
-		var onscroll = function(){				
-		}
-		desktopAddGalleryCarousal();
-		onscroll();
-		ongallerythumbclick();
 
 		return {};
 	}());
