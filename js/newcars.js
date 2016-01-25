@@ -4,6 +4,40 @@
 	quikr.cars.nc = {};
 	quikr.cars.nc.modelPage = {};
 	quikr.cars.nc.helpermodule = {};
+	quikr.cars.nc.contentTabModule = {};
+
+	quikr.cars.nc.contentTabModule = (function(){
+
+		var getContentClasses = function(obj){			
+			var allLi = $(obj).parent().parent();
+			var arr =  [];
+			var arrparent = [];
+			var objAllAnchor$ = $(allLi).find("a");
+			objAllAnchor$.each(function(){					
+				var classOfTarget = $(this).attr("href");
+					classOfTarget = classOfTarget.substring(1);			
+					arr.push("."+classOfTarget);
+					arrparent.push("."+classOfTarget+"-parent");
+
+			});
+			return {arr,arrparent};
+		};
+
+		var hideOtherTabContent = function(arrClassNamesWithDot,classNameWithDot){
+			$(arrClassNamesWithDot).addClass("hidden");
+			$(classNameWithDot).removeClass("hidden");
+		};
+
+		var addOpacityForAnimation = function(){
+
+			var arrOfTab = getContentClasses(this);
+			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab[0],"."+classOfTarget);
+			var objOfItemToDisable = arrOfClassToHide.toString();
+
+		}
+
+
+	});
 
 	quikr.cars.nc.helpermodule = (function(){
 
@@ -151,12 +185,26 @@
 		};	
 		*/
 		var variantModule = (function(){
+
 			var _onTabClick = function(){
 				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
 					 gallerymodule.changeTabClass(this);
-					 gallerymodule.onTabClick(this);			
+					 gallerymodule.onTabClick(this);
+
+
+					var classOfTarget = $(this).attr("href");
+					classOfTarget = classOfTarget.substring(1);			
+					classOfTarget = classOfTarget+"-parent";
+					var objOfItem1 = $("."+classOfTarget);
+
+
+					$(objOfItemToDisable).css("opacity","0");
+
+					objOfItem1.css("opacity","1");
+
 				});
 				$(".nc-variants select").on("change",function(){
+
 					var classOfTarget = $(this).val();
 					var objOfItem$ = $("."+classOfTarget);
 					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-variants select");
@@ -165,6 +213,34 @@
 				/* attach for mobile as well. */
 				//.nc-m-menu 
 			}
+
+			var contentTabToggling = function(){
+				/*
+				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
+					var classOfTarget = $(this).attr("href");
+					classOfTarget = classOfTarget.substring(1);			
+					var arrOfTab = _getTabs1(this);	
+
+					hideOtherTabContent();
+					addOpacityForAnimation();
+				}
+				*/
+			}			
+
+
+			var hideCarousel = function(){
+				var itemAll = $(".nc-variants #d-variant-carousel .nc-desc.js-tabAll");
+				$(".nc-variants #d-variant-carousel .carousel-inner").css("opacity",1);
+				if(itemAll.length<=6) {
+					$("#d-variant-carousel .carousel-indicators").addClass("hidden");
+					$("#d-variant-carousel .carousel-control").addClass("hidden");					
+				}
+				//if($(".nc-variants .nc-desc").length)
+
+
+
+			}
+			hideCarousel();
 			_onTabClick();
 		})();
 
@@ -199,14 +275,11 @@
 
 				var classOfTarget = $(objNavTab).attr("href");
 				classOfTarget = classOfTarget.substring(1);			
-				console.log(classOfTarget);
-
 				var objOfItem$ = $("."+classOfTarget);
 				var arrOfTab = _getTabs(objNavTab);
 				var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfTab,"."+classOfTarget);
 
 				var objOfItemToDisable = arrOfClassToHide.toString();
-				console.log(objOfItemToDisable);
 				objOfItem$.removeClass("hidden");
 				$(objOfItemToDisable).addClass("hidden");
 
@@ -259,6 +332,7 @@
 
 			}
 
+			/*
 			var pauseCarousel = function(){
 			   $('.carousel').each(function(){
 			        $(this).carousel({
@@ -266,10 +340,11 @@
 			        });
 			    });
     		}
+    		*/
     		_onThumbnailClick();
 			_onGalleryTabClick();
 			_toggleThumbnail();
-			pauseCarousel();
+			//pauseCarousel();
 			return {changeTabClass,onTabClick};
 		}());
 
@@ -332,10 +407,12 @@
 
 	quikr.cars.nc.view.scroll = (function(){
 		$(window).scroll(function() {
+			var offset = "";
 			$("[data-class='animate-colors'],[data-class='animate-variants'],[data-class='animate-cta'],[data-class='animate-gallery']").each(function(){
 				var dataclass = $(this).data('class');
 				var imagePos = $(this).offset().top;
 				var topOfWindow = $(window).scrollTop();
+
 				if (imagePos < topOfWindow+400) {
 					$(this).addClass(dataclass);
 				}
@@ -472,6 +549,7 @@ quikr.cars.nc.attachEventsToFilters = function(){
 		var minPrice = $('#newCarsSNBFilterMinPrice').val();
 		var maPrice =  $(this).data('val');
 		var price = minPrice+'_'+maPrice;
+		var priceSelected = true;
 		var urlPath = document.location.pathname;
 		var urlComponentArray = urlPath.split('/');
 		var lastComponent = urlComponentArray.pop();
@@ -480,12 +558,18 @@ quikr.cars.nc.attachEventsToFilters = function(){
 		}
 		var urlParameters = lastComponent.split('+');
 		var attributeArray = urlParameters.pop().split('');
-		attributeArray.push('3');
+		if($.inArray('3',attributeArray) == -1){
+			attributeArray.push('3');
+			var priceSelected = false;
+		}
 		attributeArray = attributeArray.sort();
 		var newUrlParameters = ['new'];
 		for(var i=0;i<attributeArray.length;i++){
 			if(attributeArray[i] == '3'){
 				newUrlParameters.push(price);
+				if(priceSelected){
+					urlParameters.splice(i+1,1);
+				}
 			}
 			else if(attributeArray[i] < '3'){
 				newUrlParameters.push(urlParameters[i+1]);

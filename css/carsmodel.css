@@ -382,6 +382,11 @@ div.wrapper section.nc-variants div.nc-desc {
   padding-top: 25px;
   padding-bottom: 25px;
   max-height: 230px;
+  -webkit-transition: 0.2s all ease-in;
+  -moz-transition: 0.2s all ease-in;
+  -ms-transition: 0.2s all ease-in;
+  -o-transition: 0.2s all ease-in;
+  transition: 0.2s all ease-in;
 }
 div.wrapper section.nc-variants div.nc-desc .nc-image {
   margin-bottom: 15px;
@@ -919,7 +924,7 @@ div.wrapper .carousel .carousel-control .icon-prev,
 div.wrapper .carousel .carousel-control .icon-next {
   width: 40px;
   height: 40px;
-  background-color: #000;
+  background-color: #3c3c3c;
 }
 div.wrapper .carousel .item .carousel-caption {
   background-color: #3c3c3c;
@@ -1000,6 +1005,28 @@ div.wrapper #d-variant-carousel .carousel-control.top .icon-arrows_remove {
   height: 40px;
   background-color: #000;
   display: inline-block;
+}
+div.wrapper #d-variant-carousel .carousel-indicators {
+  bottom: -10px;
+}
+div.wrapper #d-variant-carousel .carousel-indicators > li {
+  background-color: #ddd;
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+div.wrapper #d-variant-carousel .carousel-indicators > li.active {
+  background-color: #3c3c3c;
+}
+div.wrapper #d-variant-carousel .carousel-inner .item > div {
+  -webkit-transition: opacity linear 0.1s;
+  -moz-transition: opacity linear 0.1s;
+  -ms-transition: opacity linear 0.1s;
+  -o-transition: opacity linear 0.1s;
+  transition: opacity linear 0.1s;
+}
+div.wrapper #d-variant-carousel .carousel-inner .item > div:first-child {
+  opacity: 1;
 }
 div.wrapper .frm-select {
   -webkit-appearance: none;
