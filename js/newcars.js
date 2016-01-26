@@ -6,7 +6,47 @@
 	quikr.cars.nc.helpermodule = {};
 	quikr.cars.nc.contentTabModule = {};
 
+	quikr.cars.nc.carouselModule = {};
+
+	quikr.cars.nc.carouselModule = (function(){
+
+		$('#d-variant-carousel').on('slide.bs.carousel', function (e) {
+		       var $this = $(this);
+
+		       /*
+			 if($('#d-variant-carousel .carousel-inner .item:first').hasClass('active')) {
+			    $this.children('.left.carousel-control').hide();
+			  } else if($('#d-variant-carousel .carousel-inner .item:last').hasClass('active')) {
+			    $this.children('.right.carousel-control').hide();
+			  }	
+			  */
+			// if($('#d-variant-carousel .carousel-inner .item').hasClass("hidden"))
+		});
+
+		/*
+		  $('.carousel').carousel({
+		   }).on('slide', function (e) {
+		       var xx = $(this);
+		       setTimeout(function() {
+		           xx.find('.active').next().find('.slab').slabText();
+		       } , 0);
+		   });		
+		 */  
+
+	})();
 	quikr.cars.nc.contentTabModule = (function(){
+		var changeTabClass = function(obj){
+			objOfUnorderedList$ =  $(obj).parent().parent();
+			objOfUnorderedList$.find("a").removeClass("btn-filled").addClass("btn-border");
+			$(obj).removeClass("btn-border").addClass("btn-filled");
+		}		
+		var changeTabClassFromModal = function(obj){
+			/*
+			objOfUnorderedList$ =  $(obj).parent().parent();
+			objOfUnorderedList$.find("a").removeClass("btn-filled").addClass("btn-border");
+			$(obj).removeClass("btn-border").addClass("btn-filled");
+			*/
+		}		
 		var getContentClasses = function(obj){	
 			var allLi = $(obj).parent().parent();
 			var arr =  [];
@@ -21,6 +61,18 @@
 			});
 			return {arr,arrparent};
 		};
+		var getAllSelectVal = function(selector){
+			var arr = [];
+			var arrparent = [];
+			console.log(selector);
+			//debugger;
+			$(selector+">option").each(function() {
+			   arr.push("."+$(this).val());
+			   arrparent.push("."+$(this).val()+"-parent");
+			});
+
+			return {arr,arrparent};
+		};		
 
 		var hideOtherTabContent = function(arrClassNamesWithDot,classNameWithDot){
 			//remove 
@@ -40,19 +92,21 @@
 			$(parentClassNameWithDot).css("opacity","1");
 		};
 
-		
-		var killItem = function(objSelectedTab){			
-			//if(objSelectedTab).
-			// on click of the tab if the item click of the carousel has 
-			//make the item child as hidden and also the corresponding indicators.
-			// if the childrens of item do not have the class objSelectedTab.
-			var itemChild = $("carouselid carouselinner").find("item").addClass("hidden");
-			var itemobj$ = $("carouselid carouselinner").find("item");
-			itemobj$.each(function(){				
-				var obj = $(this).find("myclassname").length;
 
-				if(length<=0){
-					hide;
+		
+		var killItem = function(objClickedTab, carouselobj$){	
+			$(carouselobj$).find(".item-hidden").removeClass("item-hidden").addClass("item");
+			var classNameWithDot = $(objClickedTab).attr("href");
+			classNameWithDot = "."+classNameWithDot.substring(1);	
+			var itemobj$ = carouselobj$.find(".item");
+			itemobj$.each(function(i,objOfItem){	
+				var lengthOfTabSelectedClass = $(objOfItem).find(classNameWithDot).length;
+				if(lengthOfTabSelectedClass<=0){
+					$(objOfItem).addClass("item-hidden");
+					$(objOfItem).removeClass("item");
+				}
+				else {
+					$(objOfItem).removeClass("hidden");	
 				}
 			});
 		};
@@ -61,49 +115,46 @@
 			var classNameWithDot = $(objClickedTab).attr("href");
 			classNameWithDot = "."+classNameWithDot.substring(1);	
 			parentClassNameWithDot = classNameWithDot+"-parent";
-
 			var objArr = getContentClasses(objClickedTab);
 			hideOtherTabContent(objArr.arr,classNameWithDot);	
+			//changeTabClass(objClickedTab);
 			addOpacityOnTabContentChange(objArr.arrparent,parentClassNameWithDot);
 		};	
-		var contentTabTogglingForMobile = function(objClickedTab){
-			var objArr = getContentClasses(objClickedTab);
-			hideOtherTabContent(objArr.arr,classNameWithDot);	
-			addOpacityOnTabContentChange(objArr.arrparent,classNameWithDot);
+		var contentTabTogglingForMobile = function(objClickedTab,selector){
+
+			var classOfTarget = $(objClickedTab).val();
+			console.log("ssfs"+classOfTarget);
+			//return;			
+			var parentClass = classOfTarget+'-parent';
+			var objArr = getAllSelectVal(selector);
+			hideOtherTabContent(objArr.arr,"."+classOfTarget);	
+			addOpacityOnTabContentChange(objArr.arrparent,"."+parentClass);
 		};
 
-		$(".item>div").not(".js-tabAll-parent").css("opacity",0);
+		/*
+		var contentTabTogglingForDesktop = function(objClickedTab, carouselobj$){
+			_killItem()
+		};
+		*/
 
-		return {contentTabTogglingForDesktop,contentTabTogglingForMobile};
+		return {contentTabTogglingForDesktop,contentTabTogglingForMobile,changeTabClass,killItem};
 	})();
 
 	quikr.cars.nc.helpermodule = (function(){
-
+		var goToCarouselItem = function( carousel$ ,pos){
+			var posInt = parseInt(pos, 10);	
+			carousel$.carousel(posInt);
+		}
 		var removeItemFromArr = function(arrInput,removeItem){
 			var arr = [];
-
-			/*
-			arr = $.grep(arrInput, function(value) {
-			  return value != removeItem;
-			});
-			*/
 			$.each(arrInput,function(i,value){
 				if(value != removeItem) {
 					arr.push(value);
 				}
 			});
-
 			return arr;
 		}
 
-		var getAllSelectVal = function(selector){
-			var opt_vals = [];
-			$(selector+">option").each(function() {
-			   opt_vals.push("."+$(this).val());
-			});
-
-			return opt_vals;
-		};
 
 		var filterForSection = function(arrOfClassToHide, keyClassToHide){
 			var arrOfClassToHide = quikr.cars.nc.helpermodule.removeItemFromArr(arrOfClassToHide,"."+keyClassToHide);
@@ -112,7 +163,7 @@
 			$(objOfItemToDisable).addClass("hidden");			
 		}
 
-		return {removeItemFromArr,getAllSelectVal,filterForSection};
+		return {removeItemFromArr,filterForSection,goToCarouselItem};
 	})();
 
 	quikr.cars.nc.init = (function(){
@@ -224,87 +275,49 @@
 
 			var _onTabClick = function(){
 				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
-
-					/*
-					 gallerymodule.changeTabClass(this);
-					 gallerymodule.onTabClick(this);
-
-
-					var classOfTarget = $(this).attr("href");
-					classOfTarget = classOfTarget.substring(1);			
-					classOfTarget = classOfTarget+"-parent";
-					var objOfItem1 = $("."+classOfTarget);
-
-
-					$(objOfItemToDisable).css("opacity","0");
-
-					objOfItem1.css("opacity","1");
-					*/
-
 					quikr.cars.nc.contentTabModule.contentTabTogglingForDesktop(this);
-
+					quikr.cars.nc.helpermodule.goToCarouselItem($("#d-variant-carousel"),0);					
+					quikr.cars.nc.contentTabModule.killItem(this,$("#d-variant-carousel"));
 				});
 				$(".nc-variants select").on("change",function(){
-					var classOfTarget = $(this).val();
-					var parentClass = classOfTarget+'-parent';
-					var objOfItem$ = $("."+classOfTarget);
-					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-variants select");
-					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
+
+					/*
 					$(".js-mobile-page-variants .item ."+parentClass+":not(.active) ."+classOfTarget).addClass('hidden');
+					*/
+					quikr.cars.nc.contentTabModule.contentTabTogglingForMobile(this,".nc-variants select");
+
 				});				
 				/* attach for mobile as well. */
 				//.nc-m-menu 
 			}
 
-			/*
-			$('#js-variant-show').on('click',function(){
-				var classOfTarget = $(".nc-variants select").val();
-				var parentClass = classOfTarget+'-parent';
-				$(".js-mobile-page-variants .item ."+parentClass+":not(.active)").first().addClass('active');
-				$(".js-mobile-page-variants .item .active ."+classOfTarget).removeClass('hidden');
-			});
-
-			var contentTabToggling = function(){
-				$(".nc-variants ul.nav-btn>li>a").on("click",function(){
-					var classOfTarget = $(this).attr("href");
-					classOfTarget = classOfTarget.substring(1);			
-					var arrOfTab = _getTabs1(this);	
-
-					hideOtherTabContent();
-					addOpacityForAnimation();
-				}
-			}
-			*/
-
 			var hideCarousel = function(){
 				var itemAll = $(".nc-variants #d-variant-carousel .nc-desc.js-tabAll");
-				$(".nc-variants #d-variant-carousel .carousel-inner").css("opacity",1);
 				if(itemAll.length<=6) {
 					$("#d-variant-carousel .carousel-indicators").addClass("hidden");
 					$("#d-variant-carousel .carousel-control").addClass("hidden");					
 				}
 			}
 
-			var mobileAddModelPageVariants = function(){
+			var _mobileAddModelPageVariants = function(){
 				var carousalhtml$ = $(".js-desktop-page-variants");
 				if(carousalhtml$){
 					$( ".js-mobile-page-variants" ).prepend( carousalhtml$.html());
-					$(".js-mobile-page-variants .item:not(.active) .js-tabAll").addClass('hidden');
-					$(".js-mobile-page-variants .item.active").removeClass('active').children().addClass('active');
+					var mobileDiv$ = $(".js-mobile-page-variants");
+					//var carousalhtml-item$ = mobileDiv$.fin
+					$(".js-mobile-page-variants .item>div").children("div").addClass("hidden");
+					$(".js-mobile-page-variants .item:first-child>div").children("div.js-tabAll").removeClass("hidden");
+					//$( ".js-mobile-page-variants .item" ).removeClass("row");
+					//$(".js-mobile-page-variants .item:not(.active) .js-tabAll").addClass('hidden');
+					//$(".js-mobile-page-variants .item.active").removeClass('active').children().addClass('active');
 				}
 			};
-			mobileAddModelPageVariants();
+			_mobileAddModelPageVariants();
 			hideCarousel();
 			_onTabClick();
 		})();
 
 		var gallerymodule = (function(){
-
-			var alltab = function(){
-				var alltab$ = $(".nc-gallery .js-tab-all");
-				alltab$.addClass("hidden");				
-			};
-
 
 			var _getTabs = function(obj){
 				var allLi = $(obj).parent().parent();
@@ -318,12 +331,6 @@
 				return arr;
 			};
 
-			var changeTabClass = function(obj){
-				//$(obj).addClass("btn-filled");
-				$(obj).parent().parent().find("a").removeClass("btn-filled").addClass("btn-border");
-				$(obj).removeClass("btn-border").addClass("btn-filled");
-				//_getTabs(obj);
-			}
 
 			var onTabClick = function(objNavTab){
 
@@ -339,16 +346,11 @@
 
 			}
 
-			var goToCarouselItem = function( carousel$ ,pos){
-				var posInt = parseInt(pos, 10);	
-				carousel$.carousel(posInt);
-			}
-
 			var _onThumbnailClick = function(pos){
 				$("#m-thumbnail-all .thumbnail").on("click",function(){
 					var gallerycarouselmobile$  = $("#m-gallery-carousel");
 						var topCarouselSlideTo = $(this).parent().attr("data-slideto")-1;
-						goToCarouselItem(gallerycarouselmobile$,topCarouselSlideTo);
+						quikr.cars.nc.helpermodule.goToCarouselItem(gallerycarouselmobile$,topCarouselSlideTo);
 				});
 			}
 			var _toggleThumbnail = function(){
@@ -366,24 +368,27 @@
 			}
 			var _onGalleryTabClick = function(){
 				$(".m-gallery-thumbnail ul>li>a").on("click",function(){
-					onTabClick(this);
-					 goToCarouselItem($("#m-gallery-carousel"),0);	
-					 goToCarouselItem($(".m-gallery-thumbnail"),0);		
+					//onTabClick(this);
+					quikr.cars.nc.contentTabModule.contentTabTogglingForDesktop(this);
+					quikr.cars.nc.contentTabModule.killItem(this,$("#m-gallery-carousel"));
+					quikr.cars.nc.contentTabModule.killItem(this,$("#m-thumbnail-all"));
+
+					quikr.cars.nc.helpermodule.goToCarouselItem($("#m-gallery-carousel"),0);	
+					quikr.cars.nc.helpermodule.goToCarouselItem($("#m-thumbnail-all"),0);		
 
 				});
 				$(".nc-gallery-head ul.nav-btn>li>a").on("click",function(){
-					 changeTabClass(this);
-					onTabClick(this);	
-					goToCarouselItem($("#d-gallery-carousel"),0);
+					quikr.cars.nc.contentTabModule.contentTabTogglingForDesktop(this);
+					quikr.cars.nc.helpermodule.goToCarouselItem($("#d-gallery-carousel"),0);
+					quikr.cars.nc.contentTabModule.killItem(this,$("#d-gallery-carousel"));
+
 				});
 				$(".nc-gallery select").on("change",function(){
-					var classOfTarget = $(this).val();
-					var objOfItem$ = $("."+classOfTarget);
-					var arrOfTab = quikr.cars.nc.helpermodule.getAllSelectVal(".nc-gallery select");
-					quikr.cars.nc.helpermodule.filterForSection(arrOfTab,classOfTarget);
+					quikr.cars.nc.contentTabModule.contentTabTogglingForMobile(this,".nc-gallery select");
+
 				});
 			}
-			var desktopAddGalleryCarousal = function(){
+			var _desktopAddGalleryCarousal = function(){
 				var carousalhtml$ = $("#m-gallery-carousel"); 
 				if(carousalhtml$){
 					$( "#d-gallery-carousel" ).append( carousalhtml$.html() );
@@ -391,23 +396,22 @@
 				}
 			}
 
-			var ongallerythumbclick = function(){
+			var _ongalleryfigureclick = function(){
 				$("figure").on("click", function(){			
 					var dataslideto = $(this).attr("data-slideto")-1;
 					if(quikr.cars.nc.isMobile) {
 						$('#gallerymodal').modal('show');
-						console.log("sdfsdfdsfds sdfds dsfd")
-						goToCarouselItem($("#m-gallery-carousel"),dataslideto);
+						quikr.cars.nc.helpermodule.goToCarouselItem($("#m-gallery-carousel"),dataslideto);
 					}
 					else{
-						$("#d-gallery-carousel").removeClass("hidden",400);
-						goToCarouselItem($("#d-gallery-carousel"),dataslideto);
+						$("#d-gallery-carousel").removeClass("hidden",1400);
+						quikr.cars.nc.helpermodule.goToCarouselItem($("#d-gallery-carousel"),dataslideto);
 					}
 				
 				});			
 			}
 			
-			var pauseCarousel = function(){
+			var _pauseCarousel = function(){
 			   $('#d-gallery-carousel.carousel,#m-gallery-carousel.carousel,#m-thumbnail-all.carousel').each(function(){
 			        $(this).carousel({
 			            interval: false
@@ -418,10 +422,10 @@
     		_onThumbnailClick();
 			_onGalleryTabClick();
 			_toggleThumbnail();
-			desktopAddGalleryCarousal();
-			ongallerythumbclick();			
-			pauseCarousel();
-			return {changeTabClass,onTabClick};
+			_desktopAddGalleryCarousal();
+			_ongalleryfigureclick();			
+			_pauseCarousel();
+			return {onTabClick};
 		}());
 
 		return {};

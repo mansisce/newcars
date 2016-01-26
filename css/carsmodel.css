@@ -196,13 +196,19 @@ div.wrapper section.nc-heading.navbar-fixed {
   -moz-box-shadow: 0 1px 1px #ddd;
   box-shadow: 0 1px 1px #ddd;
   /*     box-shadow: 0 1px 1px #ddd; */
-  padding-bottom: 12px;
-  padding-top: 12px;
+  padding-bottom: 14px;
+  padding-top: 14px;
   -webkit-transition: opacity 0.4s ease-in;
   -moz-transition: opacity 0.4s ease-in;
   -ms-transition: opacity 0.4s ease-in;
   -o-transition: opacity 0.4s ease-in;
   transition: opacity 0.4s ease-in;
+}
+@media (min-width: 992px) {
+  div.wrapper section.nc-heading.navbar-fixed {
+    padding-bottom: 12px;
+    padding-top: 12px;
+  }
 }
 div.wrapper section.nc-heading.navbar-fixed .nc-cta-price {
   text-align: right;
@@ -351,6 +357,9 @@ div.wrapper section.nc-variants .nc-desc .nc-features li {
   line-height: 24px;
   padding: 0 0px 0 0px;
   color: #3c3c3c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 div.wrapper section.nc-variants .nc-desc .nc-features li:nth-child(4) {
   text-align: center;
@@ -412,6 +421,10 @@ div.wrapper section.nc-variants div.nc-desc:hover {
   div.wrapper section.nc-variants {
     padding: 30px 10px;
   }
+}
+div.wrapper section.nc-variants .js-mobile-page-variants .item {
+  margin-right: 0;
+  margin-left: 0;
 }
 div.wrapper section.nc-colors {
   /* This is the title: Available colors */
@@ -650,7 +663,7 @@ div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-foot
   border: 0;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .nav li.active:hover a {
-  border-bottom: red;
+  border-bottom: 2px solid #008bcf;
 }
 div.wrapper section.nc-gallery .modal.m-gallery-modal .modal-content .modal-footer.m-gallery-thumbnail .tab-content {
   padding-right: 29px;
@@ -742,21 +755,25 @@ div.wrapper section.nc-gallery .nc-gallery-all figure {
   overflow: hidden;
 }
 div.wrapper section.nc-gallery .nc-gallery-all figure > div {
-  min-height: 200px;
   position: relative;
   margin-right: 5px;
-  background-color: #000;
+  background-color: #3c3c3c;
+  min-height: 180px;
+  padding-top: 50px;
 }
 @media (min-width: 992px) {
   div.wrapper section.nc-gallery .nc-gallery-all figure > div {
     min-height: 250px;
+    padding-top: 60px;
   }
 }
 div.wrapper section.nc-gallery .nc-gallery-all figure > div img {
-  width: 100%;
-  max-height: 200px;
+  max-width: 100%;
   opacity: 1;
-  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -moz-transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -ms-transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 @media (min-width: 992px) {
@@ -821,6 +838,20 @@ div.wrapper section.nc-gallery .nc-gallery-all figure figcaption span:last-child
   div.wrapper section.nc-gallery .nc-gallery-all figure:nth-child(4n) > div {
     margin-right: 0;
   }
+}
+div.wrapper section.nc-gallery .nc-gallery-all > div:first-child > div {
+  opacity: 0;
+  -webkit-transition: opacity ease-out 0.2s 0.1s;
+  -moz-transition: opacity ease-out 0.2s 0.1s;
+  -ms-transition: opacity ease-out 0.2s 0.1s;
+  -o-transition: opacity ease-out 0.2s 0.1s;
+  transition: opacity ease-out 0.2s 0.1s;
+}
+div.wrapper section.nc-gallery .nc-gallery-all > div:first-child > div:first-child {
+  opacity: 1;
+}
+div.wrapper section.nc-gallery .nc-gallery-all > div:first-child > div#d-gallery-carousel {
+  opacity: 1;
 }
 div.wrapper section.nc-details {
   margin-top: 60px;
@@ -942,7 +973,9 @@ div.wrapper .carousel .carousel-control .icon-next {
 }
 div.wrapper .carousel .item .carousel-caption {
   background-color: #3c3c3c;
-  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1em;
+  padding: 15px 15px;
 }
 div.wrapper .carousel .item .carousel-caption .carousel-caption {
   top: 0;
@@ -984,6 +1017,10 @@ div.wrapper #d-gallery-carousel .carousel-control .icon-prev {
 div.wrapper #d-gallery-carousel .carousel-control .icon-next {
   right: 15px;
 }
+div.wrapper #m-gallery-carousel .item > div {
+  height: 60vh;
+  padding-top: 45px;
+}
 div.wrapper #m-thumbnail-all .thumbnail,
 div.wrapper #m-thumbnail-interior .thumbnail {
   float: left;
@@ -993,10 +1030,14 @@ div.wrapper #m-thumbnail-interior .thumbnail {
   min-height: 100%;
   margin-bottom: 0;
   padding-bottom: 10px;
+  padding-right: 3px;
+  padding-left: 3px;
 }
 div.wrapper #m-thumbnail-all .thumbnail img,
 div.wrapper #m-thumbnail-interior .thumbnail img {
-  border-radius: 4px;
+  border-radius: 3px;
+  min-height: 50px;
+  width: 100%;
 }
 div.wrapper #d-variant-carousel .carousel-control.right,
 div.wrapper #d-variant-carousel .carousel-control.left {
@@ -1033,13 +1074,16 @@ div.wrapper #d-variant-carousel .carousel-indicators > li.active {
   background-color: #3c3c3c;
 }
 div.wrapper #d-variant-carousel .carousel-inner .item > div {
-  -webkit-transition: opacity linear 0.1s;
-  -moz-transition: opacity linear 0.1s;
-  -ms-transition: opacity linear 0.1s;
-  -o-transition: opacity linear 0.1s;
-  transition: opacity linear 0.1s;
+  -webkit-transition: opacity ease-out 0.2s 0.1s;
+  -moz-transition: opacity ease-out 0.2s 0.1s;
+  -ms-transition: opacity ease-out 0.2s 0.1s;
+  -o-transition: opacity ease-out 0.2s 0.1s;
+  transition: opacity ease-out 0.2s 0.1s;
 }
-div.wrapper #d-variant-carousel .carousel-inner .item > div:first-child {
+div.wrapper #d-variant-carousel .carousel-inner .item:first-child > div {
+  opacity: 0;
+}
+div.wrapper #d-variant-carousel .carousel-inner .item:first-child > div:first-child {
   opacity: 1;
 }
 div.wrapper .frm-select {
